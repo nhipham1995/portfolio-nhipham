@@ -13,14 +13,14 @@ import {
   PopoverPanel,
 } from "@headlessui/react";
 
-import { ListIcon, ChevronUpIcon, ChevronDownIcon, CloseIcon } from "../svgs";
+import { ListIcon, ChevronUpIcon, CloseIcon } from "../svgs";
 import Image from "../ui/image";
 import ThemeSwitch from "../themeSwitch";
 
 const products = [
   {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
+    name: "Tic-toc-toe",
+    description: "Jouer Toc-tic-toe avec nous",
     href: "#",
     // icon: ChartPieIcon,
   },
