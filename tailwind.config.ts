@@ -10,6 +10,9 @@ const config: Config = {
 
   theme: {
     extend: {
+      height: {
+        "128": "32rem",
+      },
       colors: {
         transparent: "transparent",
         current: "currentColor",
@@ -26,8 +29,20 @@ const config: Config = {
           900: "#0d0e0c",
           950: "44473c",
         },
+        leafgreen: {
+          100: "#eaeae8",
+          200: "#d5d6d0",
+          300: "#c1c1b9",
+          400: "#97988b",
+          500: "#828373",
+          600: "#6d6f5c",
+          700: "#595a45",
+          800: "#44462d",
+          900: "#2f3116",
+        },
         // ...
       },
+
       fontFamily: {
         plantin: ["plantin", "sans-serif"],
         kennerly: ["ltc-kennerley", "serif"],
@@ -51,12 +66,15 @@ const config: Config = {
         "ava-bg": "url('/background/ava-bg.png')",
         "hover-bg": "url('/background/hover-bg.png')",
         "long-hover-bg": "url('/background/long-hover-bg.png')",
+        "flower-pattern": "url('/background/flowers.png')",
 
         // "footer-texture": "url('/img/footer-texture.png')",
       },
     },
   },
-
+  variants: {
+    fill: ["hover", "focus"], // this line does the trick
+  },
   // plugins: [
   //   require("@tailwindcss/forms")({
   //     strategy: "class",

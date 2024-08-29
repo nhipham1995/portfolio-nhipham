@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -12,41 +12,41 @@ import {
   PopoverGroup,
   PopoverPanel,
 } from "@headlessui/react";
-
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 import { ListIcon, ChevronUpIcon, CloseIcon } from "../svgs";
 import Image from "../ui/image";
-import ThemeSwitch from "../themeSwitch";
+import ThemeSwitch from "../theme-switch";
+import { ClickCounterContext } from "@/provider";
+import path from "path";
+import Link from "next/link";
+import HomeIcon from "../svgs/home";
 
 const products = [
   {
     name: "Tic-toc-toe",
     description: "Jouer Toc-tic-toe avec nous",
     href: "#",
-    // icon: ChartPieIcon,
   },
   {
     name: "Engagement",
     description: "Speak directly to your customers",
     href: "#",
-    // icon: CursorArrowRaysIcon,
   },
   {
     name: "Security",
     description: "Your customers’ data will be safe and secure",
     href: "#",
-    // icon: FingerPrintIcon,
   },
   {
     name: "Integrations",
     description: "Connect with third-party tools",
     href: "#",
-    // icon: SquaresPlusIcon,
   },
   {
     name: "Automations",
     description: "Build strategic funnels that will convert",
     href: "#",
-    // icon: ArrowPathIcon,
   },
 ];
 const callsToAction = [
@@ -56,24 +56,41 @@ const callsToAction = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const { clickCounter, setClickCounter } = useContext(ClickCounterContext);
+  const pathname = usePathname();
+  const mainPathname = pathname.split("/")[1];
+  console.log(mainPathname === "projects");
   return (
-    <header>
+    <header
+      onClick={() => {
+        setClickCounter(clickCounter + 1);
+      }}
+    >
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 font-kennerly"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Nhi PHAM</span>
-            <Image
-              width={100}
-              height={100}
-              alt={"Portrait"}
-              src={"/images/portrait.png"}
-              className="w-16 md:w-20 lg:w-28 "
-            />
-          </a>
+          {mainPathname === "blogs" ? (
+            <Link href={"/"}>
+              <HomeIcon
+                size={30}
+                className="fill-primary-500 dark:fill-gray-400 hover:fill-primary-700 dark:hover:fill-gray-200 transition cursor-pointer"
+              />
+            </Link>
+          ) : (
+            <Link href="/" className="-m-1.5 p-1.5 cursor-pointer">
+              <span className="sr-only">Nhi PHAM</span>
+              <Image
+                width={100}
+                height={100}
+                alt={"Portrait"}
+                src={"/images/portrait.png"}
+                className="w-16  md:w-20 lg:w-28"
+                size="(max-width: 600px) 12vw, (max-width: 800px) 8vw,(max-width: 1200px) 6vw, 7vw"
+              />
+            </Link>
+          )}
         </div>
 
         <div className="flex gap-5 lg:hidden">
@@ -82,22 +99,49 @@ export default function Navbar() {
           </div>
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={() => {
+              setMobileMenuOpen(true);
+            }}
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
           >
             <span className="sr-only">Open main menu</span>
             <ListIcon
-              size={25}
-              color="#939393"
-              className="p-2 rounded hover:bg-gray-100"
+              size={28}
+              // color="#939393"
+              className="p-1 rounded hover:bg-gray-200 fill-gray-400"
             />
           </button>
         </div>
+
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          <Link
+            href="/about"
+            className={clsx(
+              {
+                "text-gray-900 dark:text-gray-50 font-bold bg-hover-bg":
+                  mainPathname === "about",
+              },
+              "py-0.5 px-5 font-medium leading-6 text-gray-700 xl:text-lg hover:text-gray-900 transition hover:text-semibold hover:bg-hover-bg hover:bg-contain dark:text-primary-300 dark:hover:text-gray-50"
+            )}
+          >
+            About
+          </Link>
           <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 py-0.5 px-2 hover:bg-hover-bg hover:bg-contain font-medium xl:text-lg leading-6 text-gray-700  hover:text-gray-900 dark:text-primary-300 dark:hover:text-gray-50">
+            <PopoverButton
+              className={clsx(
+                {
+                  "text-gray-900 dark:text-gray-50 bg-hover-bg":
+                    mainPathname === "projects",
+                },
+                "flex items-center gap-x-1 py-0.5 px-2 hover:bg-hover-bg hover:bg-contain font-medium xl:text-lg leading-6  text-gray-700 hover:text-gray-900 dark:text-primary-300 dark:hover:text-gray-50"
+              )}
+              onClick={() => setClickCounter(clickCounter + 1)}
+            >
               Projects
-              <ChevronUpIcon size={10} color="#939393" />
+              <ChevronUpIcon
+                size={10}
+                className="fill-primary-800 dark:fill-primary-300 "
+              />
             </PopoverButton>
 
             <PopoverPanel
@@ -113,7 +157,8 @@ export default function Navbar() {
                     <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 dark:group-hover:bg-white">
                       <Image
                         src="/images/tick.png"
-                        height={22}
+                        height={40}
+                        width={40}
                         alt={`Demonstration mission ${item}`}
                       />
                     </div>
@@ -146,25 +191,19 @@ export default function Navbar() {
             </PopoverPanel>
           </Popover>
 
-          <a
-            href="#"
-            className=" py-0.5 px-3  font-medium leading-6 text-gray-700 xl:text-lg hover:text-gray-900 transition hover:text-semibold hover:bg-hover-bg hover:bg-cover dark:text-primary-300 dark:hover:text-gray-50"
+          <Link
+            href="/blogs"
+            className={clsx(
+              {
+                "text-gray-900 dark:text-gray-50 bg-hover-bg":
+                  mainPathname === "blogs",
+              },
+              " py-0.5 px-1 font-medium leading-6 text-gray-700 xl:text-lg hover:text-gray-900 transition hover:text-semibold hover:bg-hover-bg hover:bg-cover dark:text-primary-300 dark:hover:text-gray-50"
+            )}
           >
-            Features
-          </a>
+            Photo Blogs
+          </Link>
 
-          <a
-            href="#"
-            className="  py-0.5 px-3 font-medium leading-6 text-gray-700 xl:text-lg hover:text-gray-900 transition hover:text-semibold hover:bg-long-hover-bg hover:bg-contain dark:text-primary-300 dark:hover:text-gray-50"
-          >
-            Marketplace
-          </a>
-          {/* <a
-            href="#"
-            className="font-medium leading-6 text-gray-700 hover:text-gray-900"
-          >
-            Company
-          </a> */}
           <ThemeSwitch />
         </PopoverGroup>
       </nav>
@@ -179,11 +218,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Nhi PHAM</span>
-              {/* <img
-                alt=""
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              /> */}
+
               <Image
                 width={70}
                 height={70}
@@ -199,10 +234,8 @@ export default function Navbar() {
               <span className="sr-only">Close menu</span>
 
               <CloseIcon
-                size={18}
-                color="#939393"
-                className="p-2 rounded hover:bg-gray-100"
-                // style={{ hoverbackground: "#333", padding: "16px" }}
+                size={30}
+                className="p-2 rounded hover:bg-gray-300 fill-gray-400"
               />
             </button>
           </div>

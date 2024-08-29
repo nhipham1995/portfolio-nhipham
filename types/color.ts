@@ -21,7 +21,8 @@ export type Color =
   | "fushsia"
   | "pink"
   | "rose"
-  | "primary";
+  | "primary"
+  | "leafgreen";
 
 export type Shade = {
   50: string;

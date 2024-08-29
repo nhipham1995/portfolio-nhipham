@@ -1,4 +1,5 @@
-import { HTMLAttributes } from "react";
+import { CSSProperties, HTMLAttributes } from "react";
+import Image from "next/image";
 
 interface ImageType {
   src: string;
@@ -6,21 +7,30 @@ interface ImageType {
   width?: number;
   alt: string;
   className?: HTMLAttributes<HTMLImageElement>["className"];
+  size?: string;
+  style?: CSSProperties;
 }
-export default function Image({
+export default function ImageComponent({
   src,
   height,
   width,
   alt,
   className,
+  size = "",
+  style,
 }: ImageType) {
+  const styleCSS = { style } ?? { width: "auto", height: "auto" };
   return (
-    <img
+    <Image
       src={src}
       height={height}
       width={width}
       alt={alt}
       className={className}
-    ></img>
+      priority={true}
+      sizes={size}
+      // style={style}
+      // objectFit="cover"
+    ></Image>
   );
 }
