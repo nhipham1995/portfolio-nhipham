@@ -13,6 +13,9 @@ const config: Config = {
       height: {
         "128": "32rem",
       },
+      grayscale: {
+        10: "10%",
+      },
       colors: {
         transparent: "transparent",
         current: "currentColor",

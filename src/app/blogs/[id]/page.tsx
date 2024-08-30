@@ -5,12 +5,28 @@ import { useParams } from "next/navigation";
 import { albums } from "../../data";
 import ImageComponent from "@/components/ui/image";
 import { DateIcon, LocationIcon } from "@/components/svgs";
+import Slider from "@/components/ui/slider";
+import Pagination from "@/components/pagination";
+import { ChangeEvent, useState } from "react";
+import ItemNumberController from "@/components/item-number-controller";
+
 export default function Page() {
   const params = useParams<{ id: string }>();
-  console.log(params?.id);
+  const [currentPhotos, setcurrentPhotos] = useState(0);
+  const [photoPerTime, setPhotoPerTime] = useState(3);
   let blog = albums.find((album) => album.id === Number(params?.id));
-  console.log(blog);
-  // const First4Photos =
+  const pageTotal = Math.ceil((blog?.photos.length ?? 0) / photoPerTime);
+
+  const handlerPaginationChange = (paginationInd: number) => {
+    setcurrentPhotos(paginationInd);
+  };
+
+  const handlerInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+
+    setPhotoPerTime(value);
+  };
+
   return (
     <div>
       <div className="max-h-96">
@@ -39,27 +55,14 @@ export default function Page() {
           </p>
         </div>
       </Container>
-      <div className="grid grid-cols-4 gap-10 px-16">
-        {blog?.photos.slice(0, 4).map((photo, i) => (
-          <div className="col-span-1 mt-6">
-            <ImageComponent
-              key={i}
-              src={photo.src ?? ""}
-              height={1500}
-              width={1500}
-              alt={photo.alt ?? ""}
-              className="h-56 rounded-xl"
-            />
-          </div>
-        ))}
-      </div>
+      <Slider photos={blog?.photos.slice(0, 8) ?? []} slidePerView={4} />
+
       <div className="grid grid-cols-2 gap-10 px-16">
         <div className="flex justify-center items-center">
-          {" "}
           <Title
             content={blog?.description ?? ""}
             type="h3"
-            style="font-filo leading-10 tracking-extratight  px-8"
+            style="font-filo leading-10 tracking-extratight px-8"
             fontWeight="font-light"
             color="text-primary-500"
           />
@@ -71,7 +74,7 @@ export default function Page() {
             height={1500}
             width={1500}
             alt={blog?.photos[2].alt ?? ""}
-            className="h-128 rounded-xl"
+            className="h-128 "
           />
         </div>
       </div>
@@ -82,8 +85,38 @@ export default function Page() {
           fontWeight="font-bold"
           style="font-plantin lg:text-4xl xl:text-5xl flex justify-center "
         />
+        <div className="flex justify-end">
+          <ItemNumberController
+            photoPerTime={photoPerTime}
+            handlerInputChange={(e) => handlerInputChange(e)}
+            photoTotal={blog?.photos.length ?? 0}
+          />
+        </div>
+
+        <div className="mt-8 grid grid-cols-3 gap-5">
+          {blog?.photos
+            .slice(
+              currentPhotos * photoPerTime,
+              (currentPhotos + 1) * photoPerTime
+            )
+            .map((photo, i) => {
+              return (
+                <ImageComponent
+                  key={i}
+                  src={photo?.src}
+                  alt={photo?.alt}
+                  height={500}
+                  width={500}
+                  className="max-h-64"
+                />
+              );
+            })}
+        </div>
+        <Pagination
+          onChange={(i) => handlerPaginationChange(i)}
+          pageTotal={pageTotal}
+        />
       </Container>
-      {/* <Title type="h2" content={blog?.title ?? ""} /> */}
     </div>
   );
 }

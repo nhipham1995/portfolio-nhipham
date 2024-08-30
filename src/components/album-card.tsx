@@ -40,7 +40,7 @@ export default function AlbumCard({
           "flex justify-center xl:col-span-3 "
         )}
       >
-        <Slider photos={photos} />
+        <Slider photos={photos} slidePerView={1} />
       </div>
       <div className="mt-8 px-2 md:px-36 lg:px-64 xl:px-0 xl:mt-0 xl:col-span-6">
         <Title

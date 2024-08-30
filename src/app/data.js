@@ -24,6 +24,22 @@ export const albums = [
         alt: "On the top of Hai Van mountain",
         src: "/album1/4.jpg",
       },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/1.jpg",
+      },
+      {
+        alt: "On the middle of Hai Van mountain",
+        src: "/album1/2.jpg",
+      },
+      {
+        alt: "Hue sightseeing",
+        src: "/album1/3.jpg",
+      },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/4.jpg",
+      },
     ],
   },
   {
@@ -50,6 +66,22 @@ export const albums = [
       {
         alt: "On the top of Hai Van mountain",
         src: "/album1/1.jpg",
+      },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/1.jpg",
+      },
+      {
+        alt: "On the middle of Hai Van mountain",
+        src: "/album1/2.jpg",
+      },
+      {
+        alt: "Hue sightseeing",
+        src: "/album1/3.jpg",
+      },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/4.jpg",
       },
     ],
   },
