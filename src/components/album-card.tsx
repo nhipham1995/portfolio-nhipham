@@ -40,31 +40,42 @@ export default function AlbumCard({
           "flex justify-center xl:col-span-3 "
         )}
       >
-        <Slider photos={photos} slidePerView={1} classNames="max-w-96" />
+        <Slider
+          photos={photos}
+          slidePerView={1}
+          classNames="max-w-96"
+          slideStyle="rounded-xl"
+        />
       </div>
       <div className="mt-8 px-2 md:px-36 lg:px-64 xl:px-0 xl:mt-0 xl:col-span-6">
         <Title
-          content={title.length > 90 ? title.slice(0, 90) + "..." : title}
-          style="font-kennerly xl:text-lg "
+          content={title.length > 90 ? title.slice(0, 70) + "..." : title}
+          style="font-kennerly text-lg xl:text-2lg dark:text-primary-300 "
           type="h3"
           color="text-primary-600"
           fontWeight="font-semibold"
         />
         <div className="flex items-center gap-1 ">
-          <DateIcon size={20} className="fill-leafgreen-500" />
-          <p className="text-sm text-gray-400 font-extralight font-kennerly my-3">
+          <DateIcon
+            size={20}
+            className="fill-leafgreen-500 dark:fill-leafgreen-400"
+          />
+          <p className="text-sm text-gray-400 dark:text-gray-400 font-extralight font-kennerly my-3">
             {date}
           </p>
           <div className="w-5"></div>
-          <LocationIcon size={20} className="fill-leafgreen-500" />
-          <p className="text-sm text-gray-400 font-extralight font-kennerly my-3">
+          <LocationIcon
+            size={20}
+            className="fill-leafgreen-500 dark:fill-leafgreen-400"
+          />
+          <p className="text-sm text-gray-400 dark:text-gray-400 font-extralight font-kennerly my-3">
             {location}
           </p>
         </div>
 
-        <p className="text-primary-500 text-light font-kennerly pt-2  xl:pr-10 leading-7 ">
-          {description.length > 450
-            ? description.slice(0, 450) + "..."
+        <p className="text-primary-500 dark:text-primary-200 md:text-base xl:text-lg  tracking-wider text-light font-kennerly pt-2  xl:pr-10 leading-7 ">
+          {description.length > 330
+            ? description.slice(0, 330) + "..."
             : description}
         </p>
         <Link href={`/blogs/${id}`} className=" flex justify-end pr-10">

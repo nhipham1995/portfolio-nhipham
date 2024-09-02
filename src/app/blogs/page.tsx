@@ -7,7 +7,7 @@ import { albums } from "../data";
 export default function Page() {
   return (
     <div>
-      <div className="flex justify-center bg-leafgreen-900 py-16">
+      <div className="flex justify-center bg-leafgreen-900 py-16 2xl:py-32">
         <Image
           src={"/blogs/intro.png"}
           height={800}
@@ -20,9 +20,9 @@ export default function Page() {
         <div className="flex gap-3 lg:gap-6 justify-center items-center mt-24 mb-12 lg:mt-48 lg:mb-24">
           <p className="font-beloved-or text-3xl">n </p>
           <Title
-            content="Decouvrir des albums"
+            content="Découvrir des albums"
             type="h4"
-            style="font-beloved-script text-4xl xl:text-6xl bg-long-hover-bg  flex justify-center"
+            style="font-beloved-script text-6xl bg-long-hover-bg dark:text-primary-100 flex justify-center"
             color="text-leafgreen-800"
           />
           <p className="font-beloved-or text-3xl">n</p>

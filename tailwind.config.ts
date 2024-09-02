@@ -9,6 +9,9 @@ const config: Config = {
   darkMode: "class", // or 'media' or 'class'
 
   theme: {
+    // screens: {
+    //   "2xl": "1536px",
+    // },
     extend: {
       height: {
         "128": "32rem",

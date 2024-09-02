@@ -17,11 +17,13 @@ type SliderProps = {
   }[];
   classNames?: HTMLAttributes<HTMLDivElement>["className"];
   slidePerView: number;
+  slideStyle?: string;
 };
 export default function Slider({
   photos,
   classNames,
   slidePerView,
+  slideStyle,
 }: SliderProps) {
   return (
     <div
@@ -41,7 +43,7 @@ export default function Slider({
           rotate: 0,
           slideShadows: false,
         }}
-        className="coverflow"
+        className={`coverflow ${slideStyle}`}
         navigation={true}
       >
         {photos?.map((photo, i) => (

@@ -19,15 +19,15 @@ export default function Home() {
         setClickCounter(clickCounter + 1);
       }}
     >
-      <div className="  bg-opacity-80 dark:bg-opacity-50 min-h-[calc(100vh-_200px)] bg-contain pb-12">
-        <div className="mx-auto mt-8 md:mt-20 flex gap-9 flex-col lg:grid lg:grid-cols-5  lg:gap-4 max-w-7xl p-6 lg:px-8 xl:mb-5">
+      <div className="  bg-opacity-80 dark:bg-opacity-50 min-h-[calc(100vh-_200px)]  bg-contain pb-12">
+        <div className="mx-auto mt-8 md:mt-20 flex gap-9 flex-col lg:grid lg:grid-cols-5 2xl:pt-32 lg:gap-4 max-w-7xl 2xl:max-w-8xl p-6 lg:px-8 xl:mb-5 2xl:mb-16">
           <div className="lg:col-span-3 lg:min-h-96 order-2 xl:order-1">
             <Title
               type="h1"
               color="text-primary-800"
               content="Dévellopeuse web Full-Stack et une photographe amateuse "
               fontWeight="font-black"
-              style="lg:mb-4 font-beloved-sans dark:text-primary-200"
+              style="lg:mb-4 font-beloved-sans dark:text-primary-200 "
             />
             <p className="text-primary-700 dark:text-primary-300 antialiased text-justify text-base  font-plantin mt-3 md:mt-10 font-medium md:text-xl">
               Après avoir fini l’alternance presque 2 ans chez Mobalib, je
@@ -87,7 +87,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="h-12 md:h-20 lg:h-28 bg-flower-pattern bg-contain xl:mt-28"></div>
+        <div className="h-12 md:h-20 lg:h-28 2xl:h-36 bg-flower-pattern bg-contain xl:mt-28"></div>
       </div>
       <div className="md:grid md:grid-cols-5 md:gap-4 justify-center font-kennerly max-w-7xl mx-auto pt-12 ">
         <div className="flex md:col-span-2 justify-center items-center w-full hidden md:block">

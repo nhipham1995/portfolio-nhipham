@@ -33,7 +33,7 @@ export default function Page() {
         <ImageComponent
           src={blog?.photos[0].src ?? ""}
           height={1500}
-          width={1500}
+          width={2500}
           alt={blog?.photos[0].alt ?? ""}
           className="h-96"
         />
