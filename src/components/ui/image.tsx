@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 import Image from "next/image";
 
 interface ImageType {
@@ -8,7 +8,6 @@ interface ImageType {
   alt: string;
   className?: HTMLAttributes<HTMLImageElement>["className"];
   size?: string;
-  style?: CSSProperties;
 }
 export default function ImageComponent({
   src,
@@ -17,20 +16,18 @@ export default function ImageComponent({
   alt,
   className,
   size = "",
-  style,
 }: ImageType) {
-  const styleCSS = { style } ?? { width: "auto", height: "auto" };
   return (
     <Image
       src={src}
       height={height}
       width={width}
       alt={alt}
+      // add w-auto to avoid the warning error about size of image
+      // className={`${className} w-auto`}
       className={className}
       priority={true}
       sizes={size}
-      // style={style}
-      // objectFit="cover"
     ></Image>
   );
 }

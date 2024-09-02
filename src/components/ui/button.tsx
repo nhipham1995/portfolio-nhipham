@@ -1,10 +1,11 @@
-import { DOMAttributes, HTMLAttributes } from "react";
+import { DOMAttributes, HTMLAttributes, ReactNode } from "react";
 import clsx from "clsx";
+import Link from "next/link";
 
 export type ButtonProps = {
   downloadable: boolean;
   src?: string;
-  des: string;
+  des: string | ReactNode;
   textStyle?: HTMLAttributes<HTMLTextAreaElement>["className"];
   fillWidth?: boolean;
   className?: HTMLAttributes<HTMLDivElement>["className"];
@@ -41,20 +42,27 @@ export default function Button({
       )}
     >
       {downloadable ? (
-        <a
+        <Link
           href={src ?? ""}
           className="w-full flex justify-center cursor-pointer font-bold"
           target="_blank"
           download
         >
           {des}
-        </a>
+        </Link>
       ) : (
         <button
           className={clsx({ "cursor-not-allowed ": disabled })}
           disabled={disabled}
         >
-          <p className={`text-center w-full font-bold ${textStyle}`}>{des}</p>
+          <p
+            className={clsx(
+              { "fill-gray-200 ": disabled },
+              `text-center w-full font-bold  ${textStyle}`
+            )}
+          >
+            {des}
+          </p>
         </button>
       )}
     </div>

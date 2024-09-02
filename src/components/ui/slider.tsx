@@ -51,7 +51,6 @@ export default function Slider({
               height={1200}
               width={1200}
               alt={photo.alt}
-              className=""
             />
           </SwiperSlide>
         ))}
