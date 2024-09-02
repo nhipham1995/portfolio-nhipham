@@ -21,9 +21,8 @@ export default function Title({
         <h1
           className={
             color +
-            " text-2xl lg:text-3xl xl:text-4xl  leading-tight tracking-light " +
             style +
-            " " +
+            " text-2xl lg:text-3xl xl:text-4xl  leading-tight tracking-light " +
             fontWeight
           }
         >

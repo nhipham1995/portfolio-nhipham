@@ -86,3 +86,126 @@ export const albums = [
     ],
   },
 ];
+
+export const appDesignPages = [
+  {
+    src: "/projects/design/login.png",
+    alt: "Login Page Demo",
+  },
+  {
+    src: "/projects/design/dashboard.png",
+    alt: "Dashboard Page Demo",
+  },
+  {
+    src: "/projects/design/gestion-1.png",
+    alt: "Gestion part 1",
+  },
+  {
+    src: "/projects/design/gestion-2.png",
+    alt: "Gestion part 2",
+  },
+  {
+    src: "/projects/design/gestion-3.png",
+    alt: "Gestion part 3",
+  },
+  {
+    src: "/projects/design/gestion-4.png",
+    alt: "Gestion part 4",
+  },
+  {
+    src: "/projects/design/gestion-5.png",
+    alt: "Gestion part 5",
+  },
+  {
+    src: "/projects/design/gestion-1.png",
+    alt: "Gestion part 1",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+  {
+    src: "",
+    alt: "",
+  },
+];

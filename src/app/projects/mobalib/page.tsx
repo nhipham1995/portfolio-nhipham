@@ -45,16 +45,6 @@ export default function Page() {
           accessibles pour les personnes les plus contraintes simplifie
           l'expérience pour tous.
         </p>
-
-        <p className="tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify pb-10">
-          En tant que concepteur de design et développeur web, j'ai eu
-          l'opportunité de participer à la création de leur site web, un projet
-          qui a renforcé mes compétences techniques tout en m'immergeant dans le
-          domaine de l'accessibilité numérique. Le défi consistait non seulement
-          à concevoir une interface esthétique et fonctionnelle, mais aussi à
-          m'assurer que chaque aspect du site soit accessible à tous, y compris
-          aux personnes en situation de handicap.
-        </p>
         <div className="flex justify-center my-6 gap-24">
           <div className="flex justify-center gap-1 flex-col">
             <a href="https://www.mobalib.com/" target="_blank">
@@ -99,6 +89,43 @@ export default function Page() {
             </a>
             <p className="text-xs text-gray-400 text-plantin text-center">
               L'application Mobalink{" "}
+            </p>
+          </div>
+        </div>
+        <p className="tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify pb-10">
+          En tant que concepteur de design et développeur web, j'ai eu
+          l'opportunité de participer à la création de leur site web, un projet
+          qui a renforcé mes compétences techniques tout en m'immergeant dans le
+          domaine de l'accessibilité numérique. Le défi consistait non seulement
+          à concevoir une interface esthétique et fonctionnelle, mais aussi à
+          m'assurer que chaque aspect du site soit accessible à tous, y compris
+          aux personnes en situation de handicap.
+        </p>
+        <div className="flex justify-center my-6 gap-24">
+          <div className="flex justify-center gap-1 flex-col">
+            <Image
+              src="/screenshot/figma-design-mobapro.png"
+              height={400}
+              width={400}
+              alt="Capture d'écran du figma MobaPro"
+              className="rounded-lg shadow "
+            />
+
+            <p className="text-xs text-gray-400 text-plantin text-center">
+              Le design en Figma pour le projet MobaPro
+            </p>
+          </div>
+          <div className="flex justify-center gap-1 flex-col">
+            <Image
+              src="/screenshot/figma-design-mobapro-2.png"
+              height={400}
+              width={400}
+              alt="Capture d'écran du figma MobaPro 2"
+              className="rounded-lg shadow "
+            />
+
+            <p className="text-xs text-gray-400 text-plantin text-center">
+              Le design en Figma pour le projet MobaPro 2
             </p>
           </div>
         </div>

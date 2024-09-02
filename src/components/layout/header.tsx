@@ -26,17 +26,17 @@ const products = [
   {
     name: "Tic-toc-toe",
     description: "Jouer Toc-tic-toe avec nous",
-    href: "#",
+    href: "/tictoctoe",
   },
   {
-    name: "Engagement",
-    description: "Speak directly to your customers",
-    href: "#",
+    name: "MobaLib",
+    description: "Regarder mes missions chez MobaLib",
+    href: "/projects/mobalib",
   },
   {
-    name: "Security",
-    description: "Your customers’ data will be safe and secure",
-    href: "#",
+    name: "LIFAT",
+    description: "Regarder mes missions chez MobaLib",
+    href: "projects/lifat",
   },
   {
     name: "Integrations",
@@ -48,10 +48,6 @@ const products = [
     description: "Build strategic funnels that will convert",
     href: "#",
   },
-];
-const callsToAction = [
-  { name: "Watch demo", href: "#" },
-  { name: "Contact sales", href: "#" },
 ];
 
 export default function Navbar() {
@@ -173,7 +169,7 @@ export default function Navbar() {
                     </div>
                   ))}
                 </div>
-                <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                {/* <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                   {callsToAction.map((item) => (
                     <a
                       key={item.name}
@@ -183,7 +179,7 @@ export default function Navbar() {
                       {item.name}
                     </a>
                   ))}
-                </div>
+                </div> */}
               </PopoverPanel>
             </Popover>
 
@@ -243,7 +239,7 @@ export default function Navbar() {
                   <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-lg font-medium leading-7 text-primary-700 hover:bg-gray-50 hover:text-gray-900 hover:font-semibold hover:bg-white dark:text-gray-200 dark:hover:text-gray-50 dark:hover:bg-primary-500">
                     Product
                   </DisclosureButton>
-                  <DisclosurePanel className="mt-2 space-y-2">
+                  {/* <DisclosurePanel className="mt-2 space-y-2">
                     {[...products, ...callsToAction].map((item) => (
                       <DisclosureButton
                         key={item.name}
@@ -254,7 +250,7 @@ export default function Navbar() {
                         {item.name}
                       </DisclosureButton>
                     ))}
-                  </DisclosurePanel>
+                  </DisclosurePanel> */}
                 </Disclosure>
                 <a
                   href="#"

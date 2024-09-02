@@ -17,15 +17,15 @@ export default function Page() {
         />
       </div>
       <Container className="mt-15 p-5">
-        <div className="flex gap-3 lg:gap-6 justify-center items-center mt-24 mb-12 lg:mt-48 lg:mb-24">
-          <p className="font-beloved-or text-3xl">n </p>
+        <div className="flex md:gap-3 lg:gap-6 justify-center items-center mt-24 mb-12 lg:mt-48 lg:mb-24">
+          <p className="font-beloved-or text-3xl hidden md:block">n </p>
           <Title
             content="Découvrir des albums"
-            type="h4"
-            style="font-beloved-script text-6xl bg-long-hover-bg dark:text-primary-100 flex justify-center"
+            type="h3"
+            style=" font-beloved-script text-7xl lg:text-7xl xl:text-7xl bg-long-hover-bg dark:text-primary-100 flex justify-center"
             color="text-leafgreen-800"
           />
-          <p className="font-beloved-or text-3xl">n</p>
+          <p className="font-beloved-or text-3xl hidden md:block">n</p>
         </div>
 
         <div>

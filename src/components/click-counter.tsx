@@ -14,7 +14,7 @@ export default function ClickCounter() {
         style="font-kennerly text-lg text-justify dark:text-gray-300"
         fontWeight="font-bold"
       />
-      <div className="text-orange-500 text-3xl flex justify-center ">
+      <div className="text-orange-500 text-2xl mt-3 flex justify-center ">
         <p className="p-2  px-4 bg-gray-100 dark:bg-gray-200 rounded">
           {clickCounter}
         </p>

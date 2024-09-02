@@ -19,12 +19,14 @@ type SliderProps = {
   classNames?: HTMLAttributes<HTMLDivElement>["className"];
   slidePerView: number;
   slideStyle?: string;
+  height?: number;
 };
 export default function Slider({
   photos,
   classNames,
   slidePerView,
   slideStyle,
+  height,
 }: SliderProps) {
   const { width, ref } = useObserveElementWidth<HTMLDivElement>();
 
@@ -34,7 +36,7 @@ export default function Slider({
         height={100}
         spaceBetween={30}
         slidesPerView={
-          slidePerView > 4
+          slidePerView > 3
             ? width > 1500
               ? slidePerView
               : width > 800
@@ -64,6 +66,18 @@ export default function Slider({
             />
           </SwiperSlide>
         ))}
+
+        <style jsx global>{`
+          .swiper-slide.swiper-slide-active,
+          .swiper-slide.swiper-slide-active.h-48,
+          .swiper-slide.swiper-slide-next,
+          .swiper-slide.swiper-slide-prev {
+            height: ${height ?? 250}px !important;
+          }
+          .swiper {
+            height: ${height ?? 250}px;
+          }
+        `}</style>
       </Swiper>
     </div>
   );

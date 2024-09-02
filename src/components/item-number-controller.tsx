@@ -29,7 +29,7 @@ export default function ItemNumberController({
     <div>
       <div className="max-w-sm ">
         <label htmlFor="number-input">
-          <span className="block mb-0.5 mr-2 text-sm font-medium text-leafgreen-600 dark:text-gray-100 inline">
+          <span className="block mb-0.5 mr-2 text-sm font-medium text-leafgreen-600 dark:text-gray-300 inline">
             Photos par page
           </span>
 

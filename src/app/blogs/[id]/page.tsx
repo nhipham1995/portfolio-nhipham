@@ -57,18 +57,18 @@ export default function Page() {
       </Container>
       <Slider photos={blog?.photos.slice(0, 8) ?? []} slidePerView={4} />
 
-      <div className="grid grid-cols-2 gap-10 px-16">
+      <div className="grid xl:grid-cols-2 xl:gap-10 xl:px-16 mt-12 xl:mt-0 pt-10">
         <div className="flex justify-center items-center">
           <Title
             content={blog?.description ?? ""}
             type="h3"
-            style="font-filo leading-10 tracking-extratight px-8 dark:text-primary-400"
+            style="font-filo leading-10 tracking-extratight px-8  dark:text-primary-400"
             fontWeight="font-light"
             color="text-primary-500"
           />
         </div>
 
-        <div className="flex  mt-10 ">
+        <div className="flex ">
           <ImageComponent
             src={blog?.photos[2].src ?? ""}
             height={1500}
@@ -83,7 +83,7 @@ export default function Page() {
           content="Galerie"
           type="h3"
           fontWeight="font-bold"
-          style="font-plantin lg:text-4xl xl:text-5xl flex justify-center "
+          style="font-plantin text-5xl mb-8 lg:mb-0 lg:text-6xl xl:text-7xl flex justify-center dark:text-primary-200 "
         />
         <div className="flex justify-end">
           <ItemNumberController
@@ -93,7 +93,7 @@ export default function Page() {
           />
         </div>
 
-        <div className="mt-8 grid grid-cols-3 gap-5">
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-5">
           {blog?.photos
             .slice(
               currentPhotos * photoPerTime,
@@ -107,7 +107,7 @@ export default function Page() {
                   alt={photo?.alt}
                   height={500}
                   width={500}
-                  className="max-h-64"
+                  className="h-56 xl:max-h-64"
                 />
               );
             })}

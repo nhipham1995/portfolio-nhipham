@@ -27,7 +27,7 @@ export default function Home() {
               color="text-primary-800"
               content="Dévellopeuse web Full-Stack et une photographe amateuse "
               fontWeight="font-black"
-              style="lg:mb-4 font-beloved-sans dark:text-primary-200 "
+              style="lg:mb-4 font-beloved-sans dark:text-primary-200 text-center md:text-left "
             />
             <p className="text-primary-700 dark:text-primary-300 antialiased text-justify text-base  font-plantin mt-3 md:mt-10 font-medium md:text-xl ">
               Après avoir fini l’alternance presque 2 ans chez Mobalib, je
@@ -38,7 +38,7 @@ export default function Home() {
               contactez-moi !
             </p>
             <div className="flex justify-end text-amber-600 ">
-              <div className="pt-2 pb-1 flex justify-center ">
+              <div className="pt-3 pb-1 flex justify-center ">
                 <p className="lg:text-lg xl:text-xl font-beloved-or pt-1">h </p>
                 <Title
                   type="h2"
@@ -122,8 +122,27 @@ export default function Home() {
               title="Mobalib"
               description="  Alternance en informatique"
               time="2022-2024"
+              goToLink="/projects/mobalib"
             />
             <CardItem
+              src={"/logo/lifat.png"}
+              size={60}
+              altImg={"Lifat Université"}
+              title="Université de Tours (LIFAT)"
+              description=" Stage en informatique"
+              time="9/2022-12/2022"
+              goToLink="/projects/lifat"
+            />
+            <CardItem
+              src={"/logo/lifat.png"}
+              size={60}
+              altImg={"Lifat Université"}
+              title="Université de Tours (LIFAT)"
+              description=" Stage en informatique"
+              time="9/2022-12/2022"
+              goToLink="/projects/lifat"
+            />
+            {/* <CardItem
               src={"/images/portrait.png"}
               size={50}
               altImg={"Illustration pour Mobalib"}
@@ -138,15 +157,7 @@ export default function Home() {
               title="Mobalib"
               description="  Alternance en informatique"
               time="2022-2024"
-            />
-            <CardItem
-              src={"/images/portrait.png"}
-              size={50}
-              altImg={"Illustration pour Mobalib"}
-              title="Mobalib"
-              description="  Alternance en informatique"
-              time="2022-2024"
-            />
+            /> */}
             {/* <div className="bg-primary-200 dark:bg-primary-300 dark:hover:bg-primary-500 rounded-xl p-3 w-full mt-6 flex justyfy-center items-center hover:bg-primary-700 transition text-primary-700 hover:text-primary-200 ">
               <p className="text-center w-full font-bold ">
                 Télécharger mon CV
