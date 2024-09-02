@@ -29,7 +29,7 @@ export default function ItemNumberController({
     <div>
       <div className="max-w-sm ">
         <label htmlFor="number-input">
-          <span className="block mb-0.5 mr-2 text-sm font-medium text-leafgreen-600 dark:text-white inline">
+          <span className="block mb-0.5 mr-2 text-sm font-medium text-leafgreen-600 dark:text-gray-100 inline">
             Photos par page
           </span>
 
@@ -46,10 +46,10 @@ export default function ItemNumberController({
             onChange={(e) => handlerChange(e)}
           />
 
-          <span className="mt-2 hidden text-xs  text-gray-600  peer-[&:not(:placeholder-shown):focus:invalid]:block">
+          <span className="mt-2 hidden text-xs  text-gray-600 dark:text-gray-300  peer-[&:not(:placeholder-shown):focus:invalid]:block">
             Accept only a number between 1 and {photoTotal}
           </span>
-          <span className="mt-2 hidden text-xs text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block ">
+          <span className="mt-2 hidden text-xs text-red-500  peer-[&:not(:placeholder-shown):not(:focus):invalid]:block ">
             Accept only a number between 1 and {photoTotal}
           </span>
         </label>

@@ -14,7 +14,10 @@ export default function Pagination({ onChange, pageTotal }: PagProps) {
 
   const getItemProps = (index: number) =>
     ({
-      className: active === index ? "text-gray-100 bg-primary-500 " : "",
+      className:
+        active === index
+          ? "text-gray-100 dark:bg-leafgreen-100 bg-primary-500 dark:hover:bg-primary-100 dark:hover:text-primary-800 "
+          : " dark:bg-primary-500 dark:hover:bg-white dark:hover:text-primary-800 ",
       onClick: () => {
         setActive(index);
       },
@@ -88,34 +91,25 @@ export default function Pagination({ onChange, pageTotal }: PagProps) {
       : Array.from(Array(pageTotal).keys()).map((item, i) => (
           <Button {...getItemProps(i)} des={i + 1} key={i} />
         ));
+
   return (
     <div className="flex items-center justify-center gap-5 mt-12">
       <Button
-        des={
-          <ChevronDownIcon
-            size={15}
-            className="rotate-90 my-1 mx-0 group-hover:fill-gray-200"
-          />
-        }
+        des={<ChevronDownIcon size={15} className="rotate-90 my-1 mx-0 " />}
         downloadable={false}
         onClick={prev}
-        disabled={active === 0 ? true : false}
-        className="font-circe group"
+        disabled={active === 0}
+        className="font-circe group dark:bg-primary-500 "
       />
 
       <div className="flex items-center gap-3">{buttonList}</div>
 
       <Button
-        des={
-          <ChevronDownIcon
-            size={15}
-            className="-rotate-90 my-1 mx-0 disabled:fill-gray-200 group-hover:fill-gray-200 group-disabled:fill-gray-200"
-          />
-        }
-        className="font-circe group group-disabled  "
+        des={<ChevronDownIcon size={15} className="-rotate-90 my-1 mx-0" />}
+        className="font-circe group dark:bg-primary-500"
         downloadable={false}
         onClick={next}
-        disabled={active === pageTotal - 1 ? true : false}
+        disabled={active === pageTotal - 1}
       />
     </div>
   );

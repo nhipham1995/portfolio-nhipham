@@ -26,18 +26,20 @@ export default function Button({
     <div
       onClick={props.onClick}
       className={clsx(
+        {
+          " cursor-not-allowed bg-primary-200 text-primary-300 fill-primary-600 ":
+            disabled,
+        },
+
         className,
+        {
+          " cursor-pointer group-hover:fill-gray-200  bg-primary-200 dark:bg-primary-300 dark:hover:bg-primary-500 hover:bg-primary-700 dark:group-hover:fill-primary-800 transition hover:text-primary-200 text-primary-700 dark:hover:bg-white dark:hover:text-primary-800":
+            !disabled,
+        },
         {
           " w-full": fillWidth === true,
         },
-        {
-          " cursor-not-allowed bg-primary-200 text-primary-300 ": disabled,
-        },
 
-        {
-          " cursor-pointer bg-primary-200 dark:bg-primary-300 dark:hover:bg-primary-500 hover:bg-primary-700 transition hover:text-primary-200 text-primary-700 ":
-            !disabled,
-        },
         " rounded-xl py-2 px-3  mt-6 flex justyfy-center items-center "
       )}
     >
@@ -57,7 +59,13 @@ export default function Button({
         >
           <p
             className={clsx(
-              { "fill-gray-200 ": disabled },
+              {
+                "fill-gray-200 dark:fill-gray-600 ": disabled,
+              },
+              {
+                "group-hover:fill-gray-200 dark:group-hover:fill-primary-800":
+                  !disabled,
+              },
               `text-center w-full font-bold  ${textStyle}`
             )}
           >

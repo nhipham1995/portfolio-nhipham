@@ -9,7 +9,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import ImageComponent from "./image";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useEffect, useRef, useState } from "react";
+import { useObserveElementWidth } from "../utils/use-observer-element-width";
 type SliderProps = {
   photos: {
     alt: string;
@@ -25,15 +26,22 @@ export default function Slider({
   slidePerView,
   slideStyle,
 }: SliderProps) {
+  const { width, ref } = useObserveElementWidth<HTMLDivElement>();
+
   return (
-    <div
-      // className="max-w-96 "
-      className={classNames}
-    >
+    <div className={classNames} ref={ref}>
       <Swiper
         height={100}
         spaceBetween={30}
-        slidesPerView={slidePerView}
+        slidesPerView={
+          slidePerView > 4
+            ? width > 1500
+              ? slidePerView
+              : width > 800
+              ? slidePerView / 2
+              : 2
+            : slidePerView
+        }
         modules={[Navigation, Pagination, A11y]}
         effect={""}
         loop={true}

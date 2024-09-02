@@ -29,7 +29,7 @@ export default function Home() {
               fontWeight="font-black"
               style="lg:mb-4 font-beloved-sans dark:text-primary-200 "
             />
-            <p className="text-primary-700 dark:text-primary-300 antialiased text-justify text-base  font-plantin mt-3 md:mt-10 font-medium md:text-xl">
+            <p className="text-primary-700 dark:text-primary-300 antialiased text-justify text-base  font-plantin mt-3 md:mt-10 font-medium md:text-xl ">
               Après avoir fini l’alternance presque 2 ans chez Mobalib, je
               souhaiterais mettre à profit mes compétences encore au service
               d’une entreprise. En recherche active d’une autre alternance, ma

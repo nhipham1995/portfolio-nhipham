@@ -41,7 +41,7 @@ export default function Page() {
       <Container>
         <Title
           content={`Album ${params?.id}: ${blog?.title}`}
-          style="font-beloved-sans mt-12"
+          style="font-beloved-sans mt-12 text-center dark:text-primary-100"
         />
         <div className="flex justify-center items-center gap-1 ">
           <DateIcon size={20} className="fill-leafgreen-700" />
@@ -62,7 +62,7 @@ export default function Page() {
           <Title
             content={blog?.description ?? ""}
             type="h3"
-            style="font-filo leading-10 tracking-extratight px-8"
+            style="font-filo leading-10 tracking-extratight px-8 dark:text-primary-400"
             fontWeight="font-light"
             color="text-primary-500"
           />
