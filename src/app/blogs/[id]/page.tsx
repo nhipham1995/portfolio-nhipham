@@ -7,14 +7,36 @@ import ImageComponent from "@/components/ui/image";
 import { DateIcon, LocationIcon } from "@/components/svgs";
 import Slider from "@/components/ui/slider";
 import Pagination from "@/components/pagination";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import ItemNumberController from "@/components/item-number-controller";
+import { ParsedUrlQuery } from "querystring";
+import Modal from "@/components/modal";
+import clsx from "clsx";
+interface IParams extends ParsedUrlQuery {
+  slug: string;
+}
+
+interface PageParams {
+  id: string;
+}
+// export const getStaticProps: GetStaticProps<PageParams> = async (context) => {
+//   const { id } = context.params as IParams;
+//   // Fetch images from an external API or local files
+//   let blog = albums.find((album) => album.id === Number(id));
+//   return {
+//     props: {
+//       blog,
+//     },
+//   };
+// };
 
 export default function Page() {
   const params = useParams<{ id: string }>();
-  const [currentPhotos, setcurrentPhotos] = useState(0);
-  const [photoPerTime, setPhotoPerTime] = useState(3);
   let blog = albums.find((album) => album.id === Number(params?.id));
+
+  const [currentPhotos, setcurrentPhotos] = useState(0);
+  const [photoPerTime, setPhotoPerTime] = useState(12);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const pageTotal = Math.ceil((blog?.photos.length ?? 0) / photoPerTime);
 
   const handlerPaginationChange = (paginationInd: number) => {
@@ -26,97 +48,119 @@ export default function Page() {
 
     setPhotoPerTime(value);
   };
-
+  const handleImageClick = (image: any) => {
+    console.log("hello");
+    setIsModalOpen(true);
+  };
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add("overflow-y-hidden");
+    } else {
+      document.body.classList.remove("overflow-y-hidden");
+    }
+  }, [isModalOpen]);
   return (
     <div>
-      <div className="max-h-96">
-        <ImageComponent
-          src={blog?.photos[0].src ?? ""}
-          height={1500}
-          width={2500}
-          alt={blog?.photos[0].alt ?? ""}
-          className="h-96"
-        />
-      </div>
-      <Container>
-        <Title
-          content={`Album ${params?.id}: ${blog?.title}`}
-          style="font-beloved-sans mt-12 text-center dark:text-primary-100"
-        />
-        <div className="flex justify-center items-center gap-1 ">
-          <DateIcon size={20} className="fill-leafgreen-700" />
-          <p className="text-base text-gray-400 font-extralight font-kennerly my-3">
-            {blog?.date}
-          </p>
-          <div className="w-5"></div>
-          <LocationIcon size={20} className="fill-leafgreen-700" />
-          <p className="text-base text-gray-400 font-extralight font-kennerly my-3">
-            {blog?.position}
-          </p>
-        </div>
-      </Container>
-      <Slider photos={blog?.photos.slice(0, 8) ?? []} slidePerView={4} />
-
-      <div className="grid xl:grid-cols-2 xl:gap-10 xl:px-16 mt-12 xl:mt-0 pt-10">
-        <div className="flex justify-center items-center">
-          <Title
-            content={blog?.description ?? ""}
-            type="h3"
-            style="font-filo leading-10 tracking-extratight px-8  dark:text-primary-400"
-            fontWeight="font-light"
-            color="text-primary-500"
-          />
-        </div>
-
-        <div className="flex ">
+      <Modal
+        open={isModalOpen}
+        photos={blog?.photos ?? []}
+        modalClose={() => setIsModalOpen(false)}
+      />
+      <div className="-z-50">
+        <div className="max-h-96">
           <ImageComponent
-            src={blog?.photos[2].src ?? ""}
+            src={blog?.photos[0].src ?? ""}
             height={1500}
-            width={1500}
-            alt={blog?.photos[2].alt ?? ""}
-            className="h-128 "
+            width={2500}
+            alt={blog?.photos[0].alt ?? ""}
+            className="h-96"
           />
         </div>
-      </div>
-      <Container className="mt-32">
-        <Title
-          content="Galerie"
-          type="h3"
-          fontWeight="font-bold"
-          style="font-plantin text-5xl mb-8 lg:mb-0 lg:text-6xl xl:text-7xl flex justify-center dark:text-primary-200 "
-        />
-        <div className="flex justify-end">
-          <ItemNumberController
-            photoPerTime={photoPerTime}
-            handlerInputChange={(e) => handlerInputChange(e)}
-            photoTotal={blog?.photos.length ?? 0}
+        <Container>
+          <Title
+            content={`Album ${params?.id}: ${blog?.title}`}
+            style=" font-beloved-sans mt-12 text-center dark:text-primary-100"
           />
-        </div>
+          <div className="flex justify-center items-center gap-1 ">
+            <DateIcon size={20} className="fill-leafgreen-700" />
+            <p className="text-base text-gray-400 font-extralight font-kennerly my-3">
+              {blog?.date}
+            </p>
+            <div className="w-5"></div>
+            <LocationIcon size={20} className="fill-leafgreen-700" />
+            <p className="text-base text-gray-400 font-extralight font-kennerly my-3">
+              {blog?.position}
+            </p>
+          </div>
+        </Container>
+        <Slider photos={blog?.photos.slice(0, 8) ?? []} slidePerView={4} />
 
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-5">
-          {blog?.photos
-            .slice(
-              currentPhotos * photoPerTime,
-              (currentPhotos + 1) * photoPerTime
-            )
-            .map((photo, i) => {
-              return (
-                <ImageComponent
-                  key={i}
-                  src={photo?.src}
-                  alt={photo?.alt}
-                  height={500}
-                  width={500}
-                  className="h-56 xl:max-h-64"
-                />
-              );
-            })}
+        <div className="grid xl:grid-cols-2 xl:gap-10 xl:px-16 mt-12 xl:mt-0 pt-10">
+          <div className="flex justify-center items-center pb-24 xl:pb-0">
+            <Title
+              content={blog?.description ?? ""}
+              type="h3"
+              style="font-filo leading-10 tracking-extratight px-8  dark:text-primary-400"
+              fontWeight="font-light"
+              color="text-primary-500"
+            />
+          </div>
+
+          <div className="flex ">
+            <ImageComponent
+              src={blog?.photos[2].src ?? ""}
+              height={1500}
+              width={1500}
+              alt={blog?.photos[2].alt ?? ""}
+              className="h-128 "
+            />
+          </div>
         </div>
-        <Pagination
-          onChange={(i) => handlerPaginationChange(i)}
-          pageTotal={pageTotal}
-        />
-      </Container>
+        <Container className="mt-32">
+          <Title
+            content="Galerie"
+            type="h3"
+            fontWeight="font-bold"
+            style="font-plantin text-5xl mb-8 lg:mb-0 lg:text-6xl xl:text-7xl flex justify-center dark:text-primary-200 "
+          />
+          <div className="flex justify-end">
+            <ItemNumberController
+              photoPerTime={photoPerTime}
+              handlerInputChange={(e) => handlerInputChange(e)}
+              photoTotal={blog?.photos.length ?? 0}
+            />
+          </div>
+
+          <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-5">
+            {blog?.photos
+              .slice(
+                currentPhotos * photoPerTime,
+                (currentPhotos + 1) * photoPerTime
+              )
+              .map((photo, i) => {
+                return (
+                  <div
+                    key={i}
+                    onClick={() => handleImageClick(photo)}
+                    className="cursor-pointer"
+                  >
+                    <ImageComponent
+                      src={photo?.src}
+                      alt={photo?.alt}
+                      height={500}
+                      width={500}
+                      className="h-56 xl:max-h-64"
+                    />
+                  </div>
+                );
+              })}
+          </div>
+          <Pagination
+            onChange={(i) => handlerPaginationChange(i)}
+            pageTotal={pageTotal}
+          />
+        </Container>
+      </div>
     </div>
   );
 }

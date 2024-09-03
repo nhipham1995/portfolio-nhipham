@@ -10,6 +10,7 @@ export type CardItemProps = {
   altImg: string;
   className?: string;
   goToLink?: string;
+  company?: string;
 };
 
 export default function CardItem({
@@ -21,6 +22,7 @@ export default function CardItem({
   altImg,
   className,
   goToLink,
+  company,
 }: CardItemProps) {
   return (
     <div
@@ -28,13 +30,15 @@ export default function CardItem({
     >
       <div className="flex items-center gap-3 px-2">
         <div className="w-12">
-          <Image
-            src={src}
-            height={size}
-            width={size}
-            alt={altImg}
-            className="p-1"
-          />
+          <Link href={company ?? ""} target="_blank">
+            <Image
+              src={src}
+              height={size}
+              width={size}
+              alt={altImg}
+              className="p-1"
+            />
+          </Link>
         </div>
 
         <div>
@@ -51,7 +55,7 @@ export default function CardItem({
         <div className="text-gray-400 dark:text-gray-300 text-xs text-right">
           <Link
             href={goToLink ?? ""}
-            className="transition hover:text-orange-500 font-bold italic hover:font-bold"
+            className="transition text-orange-400 hover:bg-orange-400 hover:text-gray-100 p-2 rounded font-bold italic hover:font-bold"
           >
             En détail
           </Link>

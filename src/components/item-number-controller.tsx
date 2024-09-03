@@ -25,6 +25,7 @@ export default function ItemNumberController({
     }
     handlerInputChange(e);
   };
+
   return (
     <div>
       <div className="max-w-sm ">

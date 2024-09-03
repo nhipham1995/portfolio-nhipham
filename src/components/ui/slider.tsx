@@ -9,8 +9,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import ImageComponent from "./image";
-import { HTMLAttributes, useEffect, useRef, useState } from "react";
+import { HTMLAttributes } from "react";
 import { useObserveElementWidth } from "../utils/use-observer-element-width";
+
 type SliderProps = {
   photos: {
     alt: string;
@@ -21,6 +22,7 @@ type SliderProps = {
   slideStyle?: string;
   height?: number;
 };
+
 export default function Slider({
   photos,
   classNames,
@@ -59,7 +61,7 @@ export default function Slider({
         {photos?.map((photo, i) => (
           <SwiperSlide key={photo.alt + i}>
             <ImageComponent
-              src={photo.src}
+              src={photo.src ?? "helo"}
               height={1200}
               width={1200}
               alt={photo.alt}

@@ -123,6 +123,7 @@ export default function Home() {
               description="  Alternance en informatique"
               time="2022-2024"
               goToLink="/projects/mobalib"
+              company="https://www.mobalib.com/"
             />
             <CardItem
               src={"/logo/lifat.png"}
@@ -132,6 +133,7 @@ export default function Home() {
               description=" Stage en informatique"
               time="9/2022-12/2022"
               goToLink="/projects/lifat"
+              company="https://lifat.univ-tours.fr/"
             />
             <CardItem
               src={"/logo/lifat.png"}

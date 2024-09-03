@@ -40,6 +40,38 @@ export const albums = [
         alt: "On the top of Hai Van mountain",
         src: "/album1/4.jpg",
       },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/1.jpg",
+      },
+      {
+        alt: "On the middle of Hai Van mountain",
+        src: "/album1/2.jpg",
+      },
+      {
+        alt: "Hue sightseeing",
+        src: "/album1/3.jpg",
+      },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/4.jpg",
+      },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/1.jpg",
+      },
+      {
+        alt: "On the middle of Hai Van mountain",
+        src: "/album1/2.jpg",
+      },
+      {
+        alt: "Hue sightseeing",
+        src: "/album1/3.jpg",
+      },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/4.jpg",
+      },
     ],
   },
   {
@@ -51,6 +83,38 @@ export const albums = [
     date: "14/5/2024",
     position: "Hue - Danang, Vietnam",
     photos: [
+      {
+        alt: "On the middle of Hai Van mountain",
+        src: "/album1/2.jpg",
+      },
+      {
+        alt: "Hue sightseeing",
+        src: "/album1/3.jpg",
+      },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/4.jpg",
+      },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/1.jpg",
+      },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/1.jpg",
+      },
+      {
+        alt: "On the middle of Hai Van mountain",
+        src: "/album1/2.jpg",
+      },
+      {
+        alt: "Hue sightseeing",
+        src: "/album1/3.jpg",
+      },
+      {
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/4.jpg",
+      },
       {
         alt: "On the middle of Hai Van mountain",
         src: "/album1/2.jpg",
@@ -119,93 +183,5 @@ export const appDesignPages = [
   {
     src: "/projects/design/gestion-1.png",
     alt: "Gestion part 1",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
-  },
-  {
-    src: "",
-    alt: "",
   },
 ];

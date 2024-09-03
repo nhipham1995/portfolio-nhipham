@@ -99,14 +99,14 @@ export default function Pagination({ onChange, pageTotal }: PagProps) {
         downloadable={false}
         onClick={prev}
         disabled={active === 0}
-        className="font-circe group dark:bg-primary-500 "
+        className="font-circe group dark:bg-primary-500 -z-50 "
       />
 
       <div className="flex items-center gap-3">{buttonList}</div>
 
       <Button
         des={<ChevronDownIcon size={15} className="-rotate-90 my-1 mx-0" />}
-        className="font-circe group dark:bg-primary-500"
+        className="font-circe group dark:bg-primary-500 -z-50"
         downloadable={false}
         onClick={next}
         disabled={active === pageTotal - 1}
