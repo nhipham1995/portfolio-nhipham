@@ -2,15 +2,16 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 
+import ImageComponent from "./image";
+import { HTMLAttributes } from "react";
+import { useObserveElementWidth } from "../utils/use-observer-element-width";
+
 // import Swiper styles
 import "swiper/css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import ImageComponent from "./image";
-import { HTMLAttributes } from "react";
-import { useObserveElementWidth } from "../utils/use-observer-element-width";
 
 type SliderProps = {
   photos: {
@@ -21,6 +22,7 @@ type SliderProps = {
   slidePerView: number;
   slideStyle?: string;
   height?: number;
+  firstImg?: number;
 };
 
 export default function Slider({
@@ -29,6 +31,7 @@ export default function Slider({
   slidePerView,
   slideStyle,
   height,
+  firstImg,
 }: SliderProps) {
   const { width, ref } = useObserveElementWidth<HTMLDivElement>();
 
@@ -58,17 +61,42 @@ export default function Slider({
         className={`coverflow ${slideStyle}`}
         navigation={true}
       >
-        {photos?.map((photo, i) => (
-          <SwiperSlide key={photo.alt + i}>
-            <ImageComponent
-              src={photo.src ?? "helo"}
-              height={1200}
-              width={1200}
-              alt={photo.alt}
-            />
-          </SwiperSlide>
-        ))}
-
+        {firstImg ? (
+          <div>
+            {photos?.slice(firstImg, photos.length - 1).map((photo, i) => (
+              <SwiperSlide key={photo.alt + i}>
+                <ImageComponent
+                  src={photo.src ?? "helo"}
+                  height={1200}
+                  width={1200}
+                  alt={photo.alt}
+                />
+              </SwiperSlide>
+            ))}
+            {photos?.slice(firstImg).map((photo, i) => (
+              <SwiperSlide key={photo.alt + i}>
+                <ImageComponent
+                  src={photo.src ?? "helo"}
+                  height={1200}
+                  width={1200}
+                  alt={photo.alt}
+                />
+              </SwiperSlide>
+            ))}
+          </div>
+        ) : (
+          photos?.map((photo, i) => (
+            <SwiperSlide key={photo.alt + i}>
+              <ImageComponent
+                src={photo.src ?? "helo"}
+                height={1200}
+                width={1200}
+                alt={photo.alt}
+              />
+            </SwiperSlide>
+          ))
+        )}
+        {/* manual set the height of slider by going through css */}
         <style jsx global>{`
           .swiper-slide.swiper-slide-active,
           .swiper-slide.swiper-slide-active.h-48,

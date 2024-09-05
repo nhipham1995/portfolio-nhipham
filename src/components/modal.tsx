@@ -9,8 +9,14 @@ type ModalProps = {
     src: string;
   }[];
   modalClose: () => void;
+  firstImg?: number;
 };
-export default function Modal({ open, photos, modalClose }: ModalProps) {
+export default function Modal({
+  open,
+  photos,
+  modalClose,
+  firstImg,
+}: ModalProps) {
   const { ref, height } = useObserveElementHeight<HTMLDivElement>();
   return (
     <div>
@@ -18,7 +24,7 @@ export default function Modal({ open, photos, modalClose }: ModalProps) {
         ref={ref}
         className={clsx(
           { hidden: !open },
-          "  bg-black/60 h-screen w-full bottom-100 fixed text-white p-[50px] bg-overlay/50 backdrop-opacity-disabled w-screen h-screen fixed inset-0"
+          "bg-black/60 h-screen w-full bottom-100 fixed text-white p-[50px] bg-overlay/50 backdrop-opacity-disabled w-screen h-screen fixed inset-0"
         )}
       >
         <Slider
@@ -27,6 +33,7 @@ export default function Modal({ open, photos, modalClose }: ModalProps) {
           height={height - 20}
           classNames="z-500  "
           slideStyle="rounded-3xl"
+          firstImg={firstImg}
         />
 
         <div

@@ -7,18 +7,16 @@ import ImageComponent from "@/components/ui/image";
 import { DateIcon, LocationIcon } from "@/components/svgs";
 import Slider from "@/components/ui/slider";
 import Pagination from "@/components/pagination";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import ItemNumberController from "@/components/item-number-controller";
-import { ParsedUrlQuery } from "querystring";
 import Modal from "@/components/modal";
-import clsx from "clsx";
-interface IParams extends ParsedUrlQuery {
-  slug: string;
-}
+// interface IParams extends ParsedUrlQuery {
+//   slug: string;
+// }
 
-interface PageParams {
-  id: string;
-}
+// interface PageParams {
+//   id: string;
+// }
 // export const getStaticProps: GetStaticProps<PageParams> = async (context) => {
 //   const { id } = context.params as IParams;
 //   // Fetch images from an external API or local files
@@ -29,7 +27,10 @@ interface PageParams {
 //     },
 //   };
 // };
-
+type argProps = {
+  alt: string;
+  src: string;
+};
 export default function Page() {
   const params = useParams<{ id: string }>();
   let blog = albums.find((album) => album.id === Number(params?.id));
@@ -37,21 +38,44 @@ export default function Page() {
   const [currentPhotos, setcurrentPhotos] = useState(0);
   const [photoPerTime, setPhotoPerTime] = useState(12);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const itemsRef = useRef<Map<argProps, HTMLDivElement> | null>(null);
+  const modalRef = useRef<number | null>(null);
+
   const pageTotal = Math.ceil((blog?.photos.length ?? 0) / photoPerTime);
 
+  function getMap() {
+    if (itemsRef.current === null) {
+      // Initialize the Map on first usage.
+      itemsRef.current = new Map<argProps, HTMLDivElement>();
+    }
+    return itemsRef.current;
+  }
+
+  function focusOnImage(image: any) {
+    const map = getMap();
+    const node = map.get(image);
+    node?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
   const handlerPaginationChange = (paginationInd: number) => {
     setcurrentPhotos(paginationInd);
   };
 
   const handlerInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-
     setPhotoPerTime(value);
   };
-  const handleImageClick = (image: any) => {
-    console.log("hello");
+
+  const handleImageClick = (image: argProps, i: number) => {
+    // update the index of photo to send the clicked photos as first photo in Modal
+    modalRef.current = i;
     setIsModalOpen(true);
   };
+
   useEffect(() => {
     if (isModalOpen) {
       document.body.classList.add("overflow-y-hidden");
@@ -65,6 +89,7 @@ export default function Page() {
         open={isModalOpen}
         photos={blog?.photos ?? []}
         modalClose={() => setIsModalOpen(false)}
+        firstImg={modalRef.current ?? 0}
       />
       <div className="-z-50">
         <div className="max-h-96">
@@ -93,7 +118,11 @@ export default function Page() {
             </p>
           </div>
         </Container>
-        <Slider photos={blog?.photos.slice(0, 8) ?? []} slidePerView={4} />
+        <Slider
+          photos={blog?.photos.slice(0, 8) ?? []}
+          slidePerView={4}
+          firstImg={1}
+        />
 
         <div className="grid xl:grid-cols-2 xl:gap-10 xl:px-16 mt-12 xl:mt-0 pt-10">
           <div className="flex justify-center items-center pb-24 xl:pb-0">
@@ -141,8 +170,16 @@ export default function Page() {
                 return (
                   <div
                     key={i}
-                    onClick={() => handleImageClick(photo)}
+                    onClick={() => handleImageClick(photo, i)}
                     className="cursor-pointer"
+                    ref={(node) => {
+                      const map = getMap();
+                      if (node) {
+                        map.set(photo, node);
+                      } else {
+                        map.delete(photo);
+                      }
+                    }}
                   >
                     <ImageComponent
                       src={photo?.src}

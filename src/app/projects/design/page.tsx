@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "@/components/ui/image";
 import Slider from "@/components/ui/slider";
-import Title from "@/components/ui/title";
 import { appDesignPages as photos } from "@/app/data";
 import { useObserveElementWidth } from "@/components/utils/use-observer-element-width";
 
