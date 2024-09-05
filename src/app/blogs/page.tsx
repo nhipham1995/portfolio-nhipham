@@ -3,12 +3,13 @@ import Container from "@/components/container";
 import Image from "@/components/ui/image";
 import Title from "@/components/ui/title";
 import { albums } from "../data";
+import ImageComponent from "@/components/ui/image";
 
 export default function Page() {
   return (
     <div>
       <div className="flex justify-center bg-leafgreen-900 py-16 2xl:py-32">
-        <Image
+        <ImageComponent
           src={"/blogs/intro.png"}
           height={800}
           width={800}
