@@ -27,21 +27,24 @@ import Modal from "@/components/modal";
 //     },
 //   };
 // };
-type argProps = {
-  alt: string;
-  src: string;
-};
+type argProps =
+  | {
+      alt: string;
+      src: string;
+      id: number;
+    }
+  | undefined;
 export default function Page() {
   const params = useParams<{ id: string }>();
   let blog = albums.find((album) => album.id === Number(params?.id));
 
-  const [currentPhotos, setcurrentPhotos] = useState(0);
+  const [currentPhotos, setCurrentPhotos] = useState(0);
   const [photoPerTime, setPhotoPerTime] = useState(12);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const itemsRef = useRef<Map<argProps, HTMLDivElement> | null>(null);
   const modalRef = useRef<number | null>(null);
-
+  const activeModalImg = useRef<number | null>(null);
   const pageTotal = Math.ceil((blog?.photos.length ?? 0) / photoPerTime);
 
   function getMap() {
@@ -54,15 +57,21 @@ export default function Page() {
 
   function focusOnImage(image: any) {
     const map = getMap();
-    const node = map.get(image);
+
+    const node = map.get(image[0]);
+    console.log(node);
     node?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
       inline: "center",
     });
+    node?.classList.add("border-focus");
+    setTimeout(() => {
+      node?.classList.remove("border-focus");
+    }, 2000);
   }
   const handlerPaginationChange = (paginationInd: number) => {
-    setcurrentPhotos(paginationInd);
+    setCurrentPhotos(paginationInd);
   };
 
   const handlerInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +79,7 @@ export default function Page() {
     setPhotoPerTime(value);
   };
 
-  const handleImageClick = (image: argProps, i: number) => {
+  const handleImageClick = (i: number) => {
     // update the index of photo to send the clicked photos as first photo in Modal
     modalRef.current = i;
     setIsModalOpen(true);
@@ -88,8 +97,28 @@ export default function Page() {
       <Modal
         open={isModalOpen}
         photos={blog?.photos ?? []}
-        modalClose={() => setIsModalOpen(false)}
+        modalClose={() => {
+          setIsModalOpen(false);
+          if (activeModalImg?.current) {
+            const currentPage = Math.ceil(
+              (activeModalImg?.current + 1) / photoPerTime
+            );
+            const result = currentPage - 1;
+            setCurrentPhotos(result);
+            setTimeout(() => {
+              focusOnImage(
+                blog?.photos.filter(
+                  (photo) => photo.id === (activeModalImg.current ?? 0)
+                )
+              ),
+                [];
+            });
+          }
+        }}
         firstImg={modalRef.current ?? 0}
+        activeImg={(e) => {
+          activeModalImg.current = e;
+        }}
       />
       <div className="-z-50">
         <div className="max-h-96">
@@ -170,7 +199,9 @@ export default function Page() {
                 return (
                   <div
                     key={i}
-                    onClick={() => handleImageClick(photo, i)}
+                    onClick={() =>
+                      handleImageClick(currentPhotos * photoPerTime + i)
+                    }
                     className="cursor-pointer"
                     ref={(node) => {
                       const map = getMap();
@@ -192,10 +223,14 @@ export default function Page() {
                 );
               })}
           </div>
-          <Pagination
-            onChange={(i) => handlerPaginationChange(i)}
-            pageTotal={pageTotal}
-          />
+          {/* avoid next, prev icon is under the modal when modal is open */}
+          {!isModalOpen && (
+            <Pagination
+              currentPage={currentPhotos}
+              onChange={(i) => handlerPaginationChange(i)}
+              pageTotal={pageTotal}
+            />
+          )}
         </Container>
       </div>
     </div>

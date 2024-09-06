@@ -4,9 +4,15 @@ import { ChevronDownIcon } from "./svgs";
 type PagProps = {
   onChange: (a: number) => void;
   pageTotal: number;
+  currentPage?: number;
 };
-export default function Pagination({ onChange, pageTotal }: PagProps) {
-  const [active, setActive] = useState(1);
+
+export default function Pagination({
+  onChange,
+  pageTotal,
+  currentPage,
+}: PagProps) {
+  const [active, setActive] = useState(currentPage ?? 0);
 
   useEffect(() => {
     onChange(active);
@@ -24,17 +30,19 @@ export default function Pagination({ onChange, pageTotal }: PagProps) {
     } as any);
 
   const next = () => {
+    console.log("next");
     if (active === pageTotal - 1) return;
 
     setActive(active + 1);
   };
 
   const prev = () => {
+    console.log("prev");
     if (active === 0) return;
 
     setActive(active - 1);
   };
-
+  console.log(active, pageTotal);
   const shortedList =
     active >= 2 && active < pageTotal - 2 ? (
       <div className="flex justify-end gap-3">
@@ -95,18 +103,18 @@ export default function Pagination({ onChange, pageTotal }: PagProps) {
   return (
     <div className="flex items-center justify-center gap-5 mt-12">
       <Button
-        des={<ChevronDownIcon size={15} className="rotate-90 my-1 mx-0 " />}
+        des={<ChevronDownIcon size={15} className="rotate-90 my-1 mx-0  z-0" />}
         downloadable={false}
         onClick={prev}
         disabled={active === 0}
-        className="font-circe group dark:bg-primary-500 -z-50 "
+        className="font-circe group dark:bg-primary-500   "
       />
 
       <div className="flex items-center gap-3">{buttonList}</div>
 
       <Button
         des={<ChevronDownIcon size={15} className="-rotate-90 my-1 mx-0" />}
-        className="font-circe group dark:bg-primary-500 -z-50"
+        className="font-circe group dark:bg-primary-500 z-0"
         downloadable={false}
         onClick={next}
         disabled={active === pageTotal - 1}

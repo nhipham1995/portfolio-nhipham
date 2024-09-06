@@ -1,9 +1,15 @@
 "use client";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Swiper,
+  SwiperSlide,
+  SwiperSlideProps,
+  useSwiperSlide,
+} from "swiper/react";
+import { type SwiperRef as SwiperType } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 
 import ImageComponent from "./image";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useEffect, useRef, useState } from "react";
 import { useObserveElementWidth } from "../utils/use-observer-element-width";
 
 // import Swiper styles
@@ -17,12 +23,14 @@ type SliderProps = {
   photos: {
     alt: string;
     src: string;
+    id?: number;
   }[];
   classNames?: HTMLAttributes<HTMLDivElement>["className"];
   slidePerView: number;
   slideStyle?: string;
   height?: number;
   firstImg?: number;
+  activeImg?: (a: number) => void;
 };
 
 export default function Slider({
@@ -32,9 +40,30 @@ export default function Slider({
   slideStyle,
   height,
   firstImg,
+  activeImg,
 }: SliderProps) {
   const { width, ref } = useObserveElementWidth<HTMLDivElement>();
+  const firstSlice = photos?.slice(firstImg, photos.length);
+  const secondSlice = photos?.slice(0, firstImg);
+  const newArr = [...firstSlice, ...secondSlice];
+  // console.log(
+  //   "origin photos",
+  //   photos.map((photo) => photo.id)
+  // );
+  // console.log(
+  //   "new order arr",
+  //   newArr.map((a) => a.id)
+  // );
 
+  // activeImg?.(firstImg ?? 0);
+  const onSlideChangeHandler = (index: number) => {
+    let realIndex = index + (firstImg ?? 0);
+    if (realIndex >= photos.length) {
+      realIndex -= photos.length;
+    }
+    console.log("modal index: ", index, " - real index in photos: ", realIndex);
+    activeImg?.(realIndex);
+  };
   return (
     <div className={classNames} ref={ref}>
       <Swiper
@@ -60,42 +89,19 @@ export default function Slider({
         }}
         className={`coverflow ${slideStyle}`}
         navigation={true}
+        onSlideChange={(e) => onSlideChangeHandler(e.realIndex)}
       >
-        {firstImg ? (
-          <div>
-            {photos?.slice(firstImg, photos.length - 1).map((photo, i) => (
-              <SwiperSlide key={photo.alt + i}>
-                <ImageComponent
-                  src={photo.src ?? "helo"}
-                  height={1200}
-                  width={1200}
-                  alt={photo.alt}
-                />
-              </SwiperSlide>
-            ))}
-            {photos?.slice(firstImg).map((photo, i) => (
-              <SwiperSlide key={photo.alt + i}>
-                <ImageComponent
-                  src={photo.src ?? "helo"}
-                  height={1200}
-                  width={1200}
-                  alt={photo.alt}
-                />
-              </SwiperSlide>
-            ))}
-          </div>
-        ) : (
-          photos?.map((photo, i) => (
-            <SwiperSlide key={photo.alt + i}>
-              <ImageComponent
-                src={photo.src ?? "helo"}
-                height={1200}
-                width={1200}
-                alt={photo.alt}
-              />
-            </SwiperSlide>
-          ))
-        )}
+        {newArr?.map((photo, i) => (
+          <SwiperSlide key={photo.alt + i}>
+            <ImageComponent
+              src={photo.src ?? "/helo"}
+              height={1200}
+              width={1200}
+              alt={photo.alt}
+            />
+          </SwiperSlide>
+        ))}
+
         {/* manual set the height of slider by going through css */}
         <style jsx global>{`
           .swiper-slide.swiper-slide-active,

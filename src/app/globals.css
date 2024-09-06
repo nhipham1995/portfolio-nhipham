@@ -75,3 +75,7 @@ div.swiper-button-prev::after,
 div.swiper-button-next::after {
   font-size: 1em;
 }
+
+.border-focus {
+  border: 8px solid #4e5634;
+}

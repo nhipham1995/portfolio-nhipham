@@ -9,66 +9,86 @@ export const albums = [
     position: "Hue - Danang, Vietnam",
     photos: [
       {
+        id: 0,
         alt: "On the top of Hai Van mountain",
         src: "/album1/1.jpg",
       },
       {
+        id: 1,
+
         alt: "On the middle of Hai Van mountain",
         src: "/album1/2.jpg",
       },
       {
+        id: 2,
+
         alt: "Hue sightseeing",
         src: "/album1/3.jpg",
       },
       {
+        id: 3,
+
         alt: "On the top of Hai Van mountain",
         src: "/album1/4.jpg",
       },
       {
+        id: 4,
+
         alt: "On the top of Hai Van mountain",
         src: "/album1/1.jpg",
       },
       {
+        id: 5,
         alt: "On the middle of Hai Van mountain",
         src: "/album1/2.jpg",
       },
       {
+        id: 6,
         alt: "Hue sightseeing",
         src: "/album1/3.jpg",
       },
       {
+        id: 7,
         alt: "On the top of Hai Van mountain",
         src: "/album1/4.jpg",
       },
       {
+        id: 8,
         alt: "On the top of Hai Van mountain",
         src: "/album1/1.jpg",
       },
       {
+        id: 9,
         alt: "On the middle of Hai Van mountain",
         src: "/album1/2.jpg",
       },
       {
+        id: 10,
         alt: "Hue sightseeing",
         src: "/album1/3.jpg",
       },
       {
+        id: 11,
         alt: "On the top of Hai Van mountain",
         src: "/album1/4.jpg",
       },
       {
+        id: 12,
         alt: "On the top of Hai Van mountain",
         src: "/album1/1.jpg",
       },
       {
+        id: 13,
         alt: "On the middle of Hai Van mountain",
         src: "/album1/2.jpg",
       },
       {
+        id: 14,
         alt: "Hue sightseeing",
         src: "/album1/3.jpg",
       },
       {
+        id: 15,
         alt: "On the top of Hai Van mountain",
         src: "/album1/4.jpg",
       },
@@ -84,66 +104,86 @@ export const albums = [
     position: "Hue - Danang, Vietnam",
     photos: [
       {
+        id: 0,
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/1.jpg",
+      },
+      {
+        id: 1,
+
         alt: "On the middle of Hai Van mountain",
         src: "/album1/2.jpg",
       },
       {
+        id: 2,
+
         alt: "Hue sightseeing",
         src: "/album1/3.jpg",
       },
       {
+        id: 3,
+
         alt: "On the top of Hai Van mountain",
         src: "/album1/4.jpg",
       },
       {
+        id: 4,
+
         alt: "On the top of Hai Van mountain",
         src: "/album1/1.jpg",
       },
       {
-        alt: "On the top of Hai Van mountain",
-        src: "/album1/1.jpg",
-      },
-      {
+        id: 5,
         alt: "On the middle of Hai Van mountain",
         src: "/album1/2.jpg",
       },
       {
+        id: 6,
         alt: "Hue sightseeing",
         src: "/album1/3.jpg",
       },
       {
+        id: 7,
         alt: "On the top of Hai Van mountain",
         src: "/album1/4.jpg",
       },
       {
+        id: 8,
+        alt: "On the top of Hai Van mountain",
+        src: "/album1/1.jpg",
+      },
+      {
+        id: 9,
         alt: "On the middle of Hai Van mountain",
         src: "/album1/2.jpg",
       },
       {
+        id: 10,
         alt: "Hue sightseeing",
         src: "/album1/3.jpg",
       },
       {
+        id: 11,
         alt: "On the top of Hai Van mountain",
         src: "/album1/4.jpg",
       },
       {
+        id: 12,
         alt: "On the top of Hai Van mountain",
         src: "/album1/1.jpg",
       },
       {
-        alt: "On the top of Hai Van mountain",
-        src: "/album1/1.jpg",
-      },
-      {
+        id: 13,
         alt: "On the middle of Hai Van mountain",
         src: "/album1/2.jpg",
       },
       {
+        id: 14,
         alt: "Hue sightseeing",
         src: "/album1/3.jpg",
       },
       {
+        id: 15,
         alt: "On the top of Hai Van mountain",
         src: "/album1/4.jpg",
       },
