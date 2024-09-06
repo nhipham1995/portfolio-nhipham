@@ -20,18 +20,19 @@ export default function Custom404() {
         content="Page Introuvable 404"
         type="h2"
         style=" font-kennerly text-center dark:text-gray-300 xl:text-6xl mt-4"
+        color="text-primary-600"
       />
 
-      <p className="flex justify-center text-center mt-8 font-orphe xl:text-2xl tracking-wider dark:text-primary-300">
+      <p className="flex justify-center text-center mt-8 font-orphe xl:text-2xl tracking-wider text-leafgreen-700 dark:text-primary-300">
         La page que vous cherchez soit renommée, supprimée ou n'est peut-être
         pas correcte.
       </p>
       <div className="flex justify-center">
-        <div className="w-36 flex justify-center">
+        <div className="w-72 flex justify-center px-5">
           <Link href={"/"}>
             <Button
               downloadable={false}
-              des={"Page d'accueil"}
+              des={"Retournez la page d'accueil"}
               className="font-plantin"
             />
           </Link>

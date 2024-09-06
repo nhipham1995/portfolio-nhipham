@@ -46,24 +46,15 @@ export default function Slider({
   const firstSlice = photos?.slice(firstImg, photos.length);
   const secondSlice = photos?.slice(0, firstImg);
   const newArr = [...firstSlice, ...secondSlice];
-  // console.log(
-  //   "origin photos",
-  //   photos.map((photo) => photo.id)
-  // );
-  // console.log(
-  //   "new order arr",
-  //   newArr.map((a) => a.id)
-  // );
 
-  // activeImg?.(firstImg ?? 0);
   const onSlideChangeHandler = (index: number) => {
     let realIndex = index + (firstImg ?? 0);
     if (realIndex >= photos.length) {
       realIndex -= photos.length;
     }
-    console.log("modal index: ", index, " - real index in photos: ", realIndex);
     activeImg?.(realIndex);
   };
+
   return (
     <div className={classNames} ref={ref}>
       <Swiper

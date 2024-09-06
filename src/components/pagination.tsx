@@ -30,19 +30,15 @@ export default function Pagination({
     } as any);
 
   const next = () => {
-    console.log("next");
     if (active === pageTotal - 1) return;
 
     setActive(active + 1);
   };
 
   const prev = () => {
-    console.log("prev");
     if (active === 0) return;
-
     setActive(active - 1);
   };
-  console.log(active, pageTotal);
   const shortedList =
     active >= 2 && active < pageTotal - 2 ? (
       <div className="flex justify-end gap-3">

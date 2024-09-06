@@ -26,7 +26,7 @@ const products = [
   {
     name: "Tic-toc-toe",
     description: "Jouer Toc-tic-toe avec nous",
-    href: "/tictoctoe",
+    href: "/projects/tictoctoe",
   },
   {
     name: "MobaLib",

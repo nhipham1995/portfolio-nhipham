@@ -1,6 +1,5 @@
 import AlbumCard from "@/components/album-card";
 import Container from "@/components/container";
-import Image from "@/components/ui/image";
 import Title from "@/components/ui/title";
 import { albums } from "../data";
 import ImageComponent from "@/components/ui/image";

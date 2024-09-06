@@ -57,18 +57,16 @@ export default function Page() {
 
   function focusOnImage(image: any) {
     const map = getMap();
-
     const node = map.get(image[0]);
-    console.log(node);
     node?.scrollIntoView({
       behavior: "smooth",
-      block: "nearest",
+      block: "end",
       inline: "center",
     });
     node?.classList.add("border-focus");
     setTimeout(() => {
       node?.classList.remove("border-focus");
-    }, 2000);
+    }, 2500);
   }
   const handlerPaginationChange = (paginationInd: number) => {
     setCurrentPhotos(paginationInd);
@@ -92,6 +90,7 @@ export default function Page() {
       document.body.classList.remove("overflow-y-hidden");
     }
   }, [isModalOpen]);
+
   return (
     <div>
       <Modal
@@ -99,7 +98,7 @@ export default function Page() {
         photos={blog?.photos ?? []}
         modalClose={() => {
           setIsModalOpen(false);
-          if (activeModalImg?.current) {
+          if (activeModalImg?.current !== null) {
             const currentPage = Math.ceil(
               (activeModalImg?.current + 1) / photoPerTime
             );
@@ -117,6 +116,7 @@ export default function Page() {
         }}
         firstImg={modalRef.current ?? 0}
         activeImg={(e) => {
+          console.log("modal", e);
           activeModalImg.current = e;
         }}
       />

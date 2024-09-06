@@ -33,12 +33,14 @@ const config: Config = {
           700: "#42453a",
           800: "#282923",
           900: "#0d0e0c",
-          950: "44473c",
+          // this color is pink, used for winner in tic toc toe game
+          950: "#d7908c",
         },
         leafgreen: {
           100: "#eaeae8",
           200: "#d5d6d0",
-          300: "#c1c1b9",
+          // this color is used for tictoctoe game
+          300: "#a89d3d",
           400: "#97988b",
           500: "#828373",
           600: "#6d6f5c",
