@@ -1,16 +1,11 @@
-function moveDescription(square) {
-  const description = [
-    "Played on left square of the first row (0,0)",
-    "Played on the middle square of the first row (0, 1)",
-    "Played on the right square of the first row (0,2)",
-    "Played on left square of the second row (1, 0)",
-    "Played on the middle square of the second row (1,1)",
-    "Played on the right square of the second row (1,2)",
-    "Played on left square of the third row (2,0)",
-    "Played on the middle square of the third row (2,1)",
-    "Played on the right square of the third row (2,2)",
-  ];
-  return description[square];
+function moveDescription(square, row) {
+  const line = Math.ceil(Number(square + 1) / row) - 1;
+  const column = square - line * row;
+  const description = `Joué sur la carré située la ligne ${
+    line + 1
+  }, avec le colonne ${column + 1}`;
+  console.log(description);
+  return description;
 }
 
 export default moveDescription;

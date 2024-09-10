@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Slider from "./ui/slider";
 import { useObserveElementHeight } from "./utils/use-observer-element-height";
 import { CloseIcon } from "./svgs";
-import { useState } from "react";
+
 type ModalProps = {
   open: boolean;
   photos: {
@@ -13,6 +13,7 @@ type ModalProps = {
   firstImg?: number;
   activeImg?: (a: number) => void;
 };
+
 export default function Modal({
   open,
   photos,

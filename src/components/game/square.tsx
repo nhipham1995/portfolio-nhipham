@@ -4,9 +4,10 @@ type SquareProps = {
   onClick: (x: number) => void;
   ind: number;
   isWinSquare: boolean;
+  hasWinner?: boolean;
 };
 
-function Square({ value, onClick, ind, isWinSquare }: SquareProps) {
+function Square({ value, onClick, ind, isWinSquare, hasWinner }: SquareProps) {
   return (
     <button
       // className={`square-item  ${
@@ -25,11 +26,12 @@ function Square({ value, onClick, ind, isWinSquare }: SquareProps) {
           "bg-leafgreen-300 text-white cursor-not-allowed":
             value !== null && value === "O",
         },
-        { "win-square bg-primary-950": isWinSquare },
         {
-          " bg-primary-500 cursor-pointer ": value === null,
+          " bg-primary-500": value === null,
         },
-        "h-28 w-28 m-2 p-0 rounded text-4xl"
+        "h-16 w-16 m-2 p-0 rounded text-4xl text-2xl",
+        { "cursor-not-allowed opacity-90": hasWinner },
+        { "win-square bg-primary-950 opacity-100": isWinSquare }
       )}
       onClick={() => onClick(ind)}
     >
