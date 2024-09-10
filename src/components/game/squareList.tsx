@@ -5,9 +5,10 @@ type SquareListProps = {
   squares: ("X" | "O")[];
   onNextStep: (a: any[], i: number) => void;
   stepNum: number;
-  winPosition?: number[] | string[];
+  winPosition?: number[] | string;
   squareInd: number;
   row: number;
+  onePlayer: boolean;
 };
 
 function SquareList({
@@ -17,17 +18,20 @@ function SquareList({
   winPosition,
   squareInd,
   row,
+  onePlayer,
 }: SquareListProps) {
-  console.log("winposition", winPosition);
   const handleClick = (i: number) => {
     if (squares[i] || winnerCheck(squares, row)) return;
     const newSquares = squares.slice();
-    newSquares[i] = "X";
-    // if (stepNum % 2 === 0) {
-    //   newSquares[i] = "X";
-    // } else {
-    //   newSquares[i] = "O";
-    // }
+    if (onePlayer) {
+      newSquares[i] = "X";
+    } else {
+      if (stepNum % 2 === 0) {
+        newSquares[i] = "X";
+      } else {
+        newSquares[i] = "O";
+      }
+    }
     onNextStep(newSquares, i);
   };
 
@@ -47,7 +51,7 @@ function SquareList({
                   onClick={(ind) => handleClick(ind)}
                   ind={index}
                   isWinSquare={
-                    winPosition && winPosition.length
+                    winPosition && Array.isArray(winPosition)
                       ? winPosition.findIndex((item) => item === index) !== -1
                         ? true
                         : false

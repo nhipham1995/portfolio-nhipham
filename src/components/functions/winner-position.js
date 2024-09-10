@@ -94,7 +94,6 @@ export default function winnerPositision(row) {
   }
 
   let finalResult = [...new Set(result.map(JSON.stringify))];
-  console.log(row, finalResult);
   return finalResult.map(JSON.parse);
 }
 

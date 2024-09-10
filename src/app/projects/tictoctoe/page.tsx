@@ -18,12 +18,12 @@ export default function Page() {
   // track the position of played squares each time
   const [moveDes, setMoveDes] = useState<string[]>([]);
   const [isAscOrder, setIsAscOrder] = useState(true);
-
+  const [onePlayer, setOnePlayer] = useState(true);
   useEffect(() => {
     setHistory([Array(row * row).fill(null)]);
     setMoveDes([]);
   }, [row]);
-
+  console.log("history", history);
   const currentSquares = history[history.length - 1];
 
   const handleNextStep = (
@@ -35,16 +35,13 @@ export default function Page() {
 
     const newMove = moveDescription(squareInd, row);
     setMoveDes([...moveDes, newMove]);
-
-    setTimeout(() => {
-      randomPosition(newSquares, squareInd, "O");
-    }, 100);
+    if (onePlayer) {
+      setTimeout(() => {
+        randomPosition(newSquares, squareInd);
+      }, 100);
+    }
   };
-  const randomPosition = (
-    newSquares: ("X" | "O")[],
-    squareInd: number,
-    type?: "X" | "O"
-  ) => {
+  const randomPosition = (newSquares: ("X" | "O")[], squareInd: number) => {
     if (winnerCheck(newSquares, row)) return;
     const newRandom = randomPlay(squareInd, newSquares);
     const newMove = moveDescription(newRandom[1], row);
@@ -66,7 +63,13 @@ export default function Page() {
 
   const instructionDes =
     winner === null
-      ? ` ${moveDes.length % 2 === 0 ? "Votre tour: X" : "Tour de : O"}`
+      ? ` ${
+          !onePlayer
+            ? moveDes.length % 2 === 0
+              ? "Votre tour: X"
+              : "Tour de : O"
+            : "Votre tour: X"
+        }`
       : winner[0] === "draw"
       ? "Ce jeu se termine par un match nul. Rejouez en cliquant le button au dessous"
       : `Le gagneur est  ${winner[0]}`;
@@ -105,12 +108,22 @@ export default function Page() {
               <Button
                 des="Retournez un pas"
                 downloadable={false}
-                className="mt-0"
+                className={"mt-0"}
                 onClick={() => {
                   const newHistory = history.slice(0, history.length - 1);
                   setHistory(newHistory);
                   setMoveDes(moveDes.slice(0, moveDes.length - 1));
                 }}
+                disabled={history.length === 1}
+              />
+              <Button
+                des={!onePlayer ? "Deux joueurs" : "Jouez avec nous"}
+                downloadable={false}
+                onClick={() => {
+                  setOnePlayer(!onePlayer);
+                  restartFunc();
+                }}
+                className="text-center mx-auto bg-gray-200"
               />
             </div>
             <label htmlFor="number-input">
@@ -167,6 +180,7 @@ export default function Page() {
                 winPosition={
                   winner && winner[1] !== "r" ? winner[1] : undefined
                 }
+                onePlayer={onePlayer}
               />
             </div>
 
@@ -196,7 +210,16 @@ export default function Page() {
                     <li
                       key={i}
                       onClick={() => rePlayAt(i + 2)}
-                      className="cursor-pointer mt-3 text-leafgreen-600 dark:text-primary-400 flex justify-center text-gray-700 text-lg"
+                      className={clsx(
+                        {
+                          "cursor-pointer mt-3 text-leafgreen-600 dark:text-primary-400 flex justify-center text-gray-700 text-lg":
+                            onePlayer,
+                        },
+                        {
+                          "cursor-pointer mt-3 [&:nth-child(even)]:text-leafgreen-300 [&:nth-child(odd)]:text-primary-700 dark:[&:nth-child(odd)]:text-primary-400 flex justify-center text-gray-700 text-lg":
+                            !onePlayer,
+                        }
+                      )}
 
                       // className="cursor-pointer mt-3 [&:nth-child(even)]:text-leafgreen-300 [&:nth-child(odd)]:text-primary-700 dark:[&:nth-child(odd)]:text-primary-400 flex justify-center text-gray-700 text-lg"
                     >
