@@ -1,5 +1,5 @@
-function randomPlay(newInd, newSquare) {
-  let available = [];
+function randomPlay(newInd: number, newSquare: ("X" | "O")[]) {
+  let available: number[] = [];
   const a = newSquare.map((x, i) => {
     if (x === null && i !== newInd) {
       available.push(i);

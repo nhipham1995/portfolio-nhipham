@@ -1,4 +1,4 @@
-function moveDescription(square, row) {
+function moveDescription(square: number, row: number) {
   const line = Math.ceil(Number(square + 1) / row) - 1;
   const column = square - line * row;
   const description = `Joué sur la carré située la ligne ${

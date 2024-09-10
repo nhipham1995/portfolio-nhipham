@@ -14,16 +14,19 @@ export default function Page() {
   const { clickCounter, setClickCounter } = useContext(ClickCounterContext);
   const [row, setRow] = useState(4);
   // store all the move from the beginning
-  const [history, setHistory] = useState([Array(row * row).fill(null)]);
+  const [history, setHistory] = useState<any[] | ("X" | "O")[]>([
+    Array(row * row).fill(null),
+  ]);
   // track the position of played squares each time
   const [moveDes, setMoveDes] = useState<string[]>([]);
-  const [isAscOrder, setIsAscOrder] = useState(true);
-  const [onePlayer, setOnePlayer] = useState(true);
+  const [isAscOrder, setIsAscOrder] = useState<boolean>(true);
+  const [onePlayer, setOnePlayer] = useState<boolean>(true);
+
   useEffect(() => {
     setHistory([Array(row * row).fill(null)]);
     setMoveDes([]);
   }, [row]);
-  console.log("history", history);
+
   const currentSquares = history[history.length - 1];
 
   const handleNextStep = (
@@ -41,13 +44,17 @@ export default function Page() {
       }, 100);
     }
   };
+
   const randomPosition = (newSquares: ("X" | "O")[], squareInd: number) => {
     if (winnerCheck(newSquares, row)) return;
     const newRandom = randomPlay(squareInd, newSquares);
-    const newMove = moveDescription(newRandom[1], row);
-    setMoveDes([...moveDes, newMove]);
+    if (typeof newRandom[1] === "number") {
+      const newMove = moveDescription(newRandom[1], row);
+      setMoveDes([...moveDes, newMove]);
+    }
     setHistory([...history, newRandom[0]]);
   };
+
   const rePlayAt = (i: number) => {
     const newHistory = history.slice(0, i);
     setHistory(newHistory);

@@ -1,4 +1,4 @@
-export default function winnerPositision(row) {
+export default function winnerPositision(row: number) {
   let result = [];
   // row
   for (let i = 0; i < row * row; i++) {
@@ -46,10 +46,12 @@ export default function winnerPositision(row) {
     result.push(LtoRResult(linear2[i], row));
     for (let j = 1; j < num + 1; j++) {
       const uncheckedValue2 = LtoRResult(linear2[i] + j * (row - 1), row);
-      if (checkResult(uncheckedValue2) === true) result.push(uncheckedValue2);
+      if (checkResult(uncheckedValue2, row) === true)
+        result.push(uncheckedValue2);
       if (j < num) {
         const uncheckedValue = LtoRResult(linear2[i] - j * (row - 1), row);
-        if (checkResult(uncheckedValue) === true) result.push(uncheckedValue);
+        if (checkResult(uncheckedValue, row) === true)
+          result.push(uncheckedValue);
       }
     }
   }
@@ -85,27 +87,29 @@ export default function winnerPositision(row) {
     result.push(RtoLResult(linear4[i], row));
     for (let j = 1; j < num + 1; j++) {
       const uncheckedValue2 = RtoLResult(linear4[i] + j * (row + 1), row);
-      if (checkResult(uncheckedValue2) === true) result.push(uncheckedValue2);
+      if (checkResult(uncheckedValue2, row) === true)
+        result.push(uncheckedValue2);
       if (j < num) {
         const uncheckedValue = RtoLResult(linear4[i] - j * (row + 1), row);
-        if (checkResult(uncheckedValue) === true) result.push(uncheckedValue);
+        if (checkResult(uncheckedValue, row) === true)
+          result.push(uncheckedValue);
       }
     }
   }
 
-  let finalResult = [...new Set(result.map(JSON.stringify))];
-  return finalResult.map(JSON.parse);
+  let finalResult = [...new Set(result.map((item) => JSON.stringify(item)))];
+  return finalResult.map((item) => JSON.parse(item));
 }
 
-function LtoRResult(value, row) {
+function LtoRResult(value: number, row: number) {
   const unit = row - 1;
   return [value - unit, value, value + unit];
 }
-function RtoLResult(value, row) {
+function RtoLResult(value: number, row: number) {
   const unit = row + 1;
   return [value - unit, value, value + unit];
 }
-function checkIndex(i, row) {
+function checkIndex(i: number, row: number) {
   let num;
   if (i >= row / 2) {
     num = row - i - 1;
@@ -114,7 +118,7 @@ function checkIndex(i, row) {
   }
   return num;
 }
-function checkResult(a, row) {
+function checkResult(a: number[], row: number) {
   for (let element of a) {
     if (element < 0 || element >= row * row) {
       return false;
