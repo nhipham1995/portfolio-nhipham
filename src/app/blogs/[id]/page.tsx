@@ -11,6 +11,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import ItemNumberController from "@/components/item-number-controller";
 import Modal from "@/components/modal";
 import { EventEmitter } from "events";
+import ObserveSlider from "@/components/ui/slider-with-width-observe";
 type photoProps = {
   id: number;
   alt: string;
@@ -183,11 +184,10 @@ const Page = () => {
             </p>
           </div>
         </Container>
-        <Slider
+        <ObserveSlider
           photos={blog?.photos.slice(0, 8) ?? []}
           slidePerView={4}
           firstImg={1}
-          widthController={true}
         />
 
         <div className="grid xl:grid-cols-2 xl:gap-10 xl:px-16 mt-12 xl:mt-0 pt-10">

@@ -50,7 +50,6 @@ export default function AlbumCard({
           slidePerView={1}
           classNames="max-w-96"
           slideStyle="rounded-xl"
-          widthController={false}
         />
       </div>
       <div className="mt-8 px-2 md:px-36 lg:px-64 xl:px-0 xl:mt-0 xl:col-span-6">

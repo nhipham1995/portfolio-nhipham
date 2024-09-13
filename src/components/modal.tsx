@@ -43,7 +43,6 @@ export default function Modal({
             slideStyle="rounded-3xl"
             firstImg={firstImg}
             activeImg={(ind) => activeImg?.(ind)}
-            widthController={false}
             // add key with variable that we want the Slider will rerender when this variable changes
             key={firstImg}
           />

@@ -18,9 +18,22 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { SliderProps } from "./slider-with-width-observe";
 
-export default function Slider({
+export type SliderProps = {
+  photos: {
+    alt: string;
+    src: string;
+    id?: number;
+  }[];
+  classNames?: HTMLAttributes<HTMLDivElement>["className"];
+  slidePerView: number;
+  slideStyle?: string;
+  height?: number;
+  firstImg?: number;
+  activeImg?: (a: number) => void;
+};
+
+export default function ObserveSlider({
   photos,
   classNames,
   slidePerView,
@@ -29,6 +42,8 @@ export default function Slider({
   firstImg,
   activeImg,
 }: SliderProps) {
+  const { ref, width } = useObserveElementWidth<HTMLDivElement>();
+
   const newArr = useMemo(() => {
     const firstSlice = photos?.slice(firstImg, photos.length);
     const secondSlice = photos?.slice(0, firstImg);
@@ -44,11 +59,19 @@ export default function Slider({
   };
 
   return (
-    <div className={classNames}>
+    <div className={classNames} ref={ref}>
       <Swiper
         height={100}
         spaceBetween={30}
-        slidesPerView={slidePerView}
+        slidesPerView={
+          slidePerView > 3
+            ? width > 1500
+              ? slidePerView
+              : width > 800
+              ? slidePerView / 2
+              : 2
+            : slidePerView
+        }
         modules={[Navigation, Pagination, A11y]}
         effect={""}
         loop={true}
