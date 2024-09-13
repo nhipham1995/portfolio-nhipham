@@ -505,6 +505,26 @@ export const albums = [
         alt: "Status dans le parc Luxembourg",
         src: "/gallery/nature-of-hue/24.jpg",
       },
+      {
+        id: 24,
+        alt: "Fleurs sur la terre",
+        src: "/gallery/nature-of-hue/25.jpg",
+      },
+      {
+        id: 25,
+        alt: "Status dans le parc Luxembourg",
+        src: "/gallery/nature-of-hue/26.jpg",
+      },
+      {
+        id: 26,
+        alt: "Status dans le parc Luxembourg",
+        src: "/gallery/nature-of-hue/27.jpg",
+      },
+      {
+        id: 27,
+        alt: "On the middle of Hai Van mountain",
+        src: "/gallery/nature-of-hue/28.jpg",
+      },
     ],
   },
   {
