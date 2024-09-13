@@ -16,7 +16,6 @@ export default function ThemeSwitch() {
     return (
       <MoonIcon
         size={30}
-        // color="#a3a3a3"
         className="cursor-pointer flex items-center justify-center fill-gray-400 cursor-pointer bg-primary-700 hover:bg-gray-600 rounded px-2 px-2 "
         onClick={() => setTheme("light")}
       />

@@ -10,13 +10,6 @@ type SquareProps = {
 function Square({ value, onClick, ind, isWinSquare, hasWinner }: SquareProps) {
   return (
     <button
-      // className={`square-item  ${
-      //   value !== null
-      //     ? value === "X"
-      //       ? "green-square inactive"
-      //       : "red-square inactive"
-      //     : "active"
-      // } ${isWinSquare ? "win-square" : ""}`}
       className={clsx(
         {
           "bg-primary-700 text-primary-100 cursor-not-allowed":

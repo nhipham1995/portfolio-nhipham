@@ -8,7 +8,6 @@ export function Footer() {
 
   return (
     <div
-      // className="mt-24"
       onClick={() => {
         setClickCounter(clickCounter + 1);
       }}
