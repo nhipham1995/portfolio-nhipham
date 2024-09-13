@@ -29,6 +29,7 @@ export default function Slider({
   firstImg,
   activeImg,
 }: SliderProps) {
+  console.log("height", height);
   const newArr = useMemo(() => {
     const firstSlice = photos?.slice(firstImg, photos.length);
     const secondSlice = photos?.slice(0, firstImg);
@@ -46,7 +47,7 @@ export default function Slider({
   return (
     <div className={classNames}>
       <Swiper
-        height={100}
+        height={height}
         spaceBetween={30}
         slidesPerView={slidePerView}
         modules={[Navigation, Pagination, A11y]}

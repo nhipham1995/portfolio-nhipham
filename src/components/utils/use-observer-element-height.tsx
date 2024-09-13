@@ -8,7 +8,7 @@ export const useObserveElementHeight = <T extends HTMLElement>() => {
   useEffect(() => {
     if (!observerRef.current) {
       observerRef.current = new ResizeObserver((entries) => {
-        setHeight(entries[0].contentRect.width);
+        setHeight(entries[0].contentRect.height);
       });
     }
     const currentElement = ref.current;
