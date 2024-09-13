@@ -24,8 +24,8 @@ export default function Custom404() {
       />
 
       <p className="flex justify-center text-center mt-8 font-orphe xl:text-2xl tracking-wider text-leafgreen-700 dark:text-primary-300">
-        La page que vous cherchez soit renommée, supprimée ou n'est peut-être
-        pas correcte.
+        La page que vous cherchez soit renommée, supprimée ou n&rsquo;est
+        peut-être pas correcte.
       </p>
       <div className="flex justify-center">
         <div className="w-72 flex justify-center px-5">

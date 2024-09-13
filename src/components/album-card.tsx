@@ -41,10 +41,16 @@ export default function AlbumCard({
         )}
       >
         <Slider
-          photos={photos}
+          photos={
+            photos ?? [
+              { alt: "demo", src: "/gallery/paris-sky/1.jpg" },
+              { alt: "demo 2", src: "/gallery/paris-sky/2.jpg" },
+            ]
+          }
           slidePerView={1}
           classNames="max-w-96"
           slideStyle="rounded-xl"
+          widthController={false}
         />
       </div>
       <div className="mt-8 px-2 md:px-36 lg:px-64 xl:px-0 xl:mt-0 xl:col-span-6">

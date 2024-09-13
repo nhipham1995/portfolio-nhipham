@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, SVGAttributes } from "react";
+import React from "react";
 import { IconProps } from "./close";
 
 const GithubIcon = ({ style, size = 100, className, onClick }: IconProps) => (
@@ -10,7 +10,6 @@ const GithubIcon = ({ style, size = 100, className, onClick }: IconProps) => (
     style={style}
     height={size}
     className={` ${className || ""}`}
-    //   className={`svg-icon ${className || ""}`}
     xmlnsXlink="http://www.w3.org/1999/xlink"
     onClick={onClick}
   >

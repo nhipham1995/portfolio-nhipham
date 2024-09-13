@@ -9,7 +9,7 @@ import { type SwiperRef as SwiperType } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 
 import ImageComponent from "./image";
-import { HTMLAttributes, useEffect, useRef, useState } from "react";
+import { HTMLAttributes, useEffect, useMemo, useRef, useState } from "react";
 import { useObserveElementWidth } from "../utils/use-observer-element-width";
 
 // import Swiper styles
@@ -31,6 +31,7 @@ type SliderProps = {
   height?: number;
   firstImg?: number;
   activeImg?: (a: number) => void;
+  widthController: boolean;
 };
 
 export default function Slider({
@@ -41,11 +42,16 @@ export default function Slider({
   height,
   firstImg,
   activeImg,
+  widthController,
 }: SliderProps) {
-  const { width, ref } = useObserveElementWidth<HTMLDivElement>();
-  const firstSlice = photos?.slice(firstImg, photos.length);
-  const secondSlice = photos?.slice(0, firstImg);
-  const newArr = [...firstSlice, ...secondSlice];
+  const { width, ref } = widthController
+    ? useObserveElementWidth<HTMLDivElement>()
+    : { width: 0, ref: null };
+  const newArr = useMemo(() => {
+    const firstSlice = photos?.slice(firstImg, photos.length);
+    const secondSlice = photos?.slice(0, firstImg);
+    return [...firstSlice, ...secondSlice];
+  }, [photos, firstImg]);
 
   const onSlideChangeHandler = (index: number) => {
     let realIndex = index + (firstImg ?? 0);
@@ -56,12 +62,12 @@ export default function Slider({
   };
 
   return (
-    <div className={classNames} ref={ref}>
+    <div className={classNames} ref={widthController ? ref : null}>
       <Swiper
         height={100}
         spaceBetween={30}
         slidesPerView={
-          slidePerView > 3
+          slidePerView > 3 && widthController && width
             ? width > 1500
               ? slidePerView
               : width > 800

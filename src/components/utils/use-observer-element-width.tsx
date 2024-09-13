@@ -3,18 +3,26 @@ import { useState, useRef, useEffect } from "react";
 export const useObserveElementWidth = <T extends HTMLElement>() => {
   const [width, setWidth] = useState(0);
   const ref = useRef<T>(null);
-
+  const observerRef = useRef<ResizeObserver | null>(null);
   useEffect(() => {
-    const observer = new ResizeObserver((entries) => {
-      setWidth(entries[0].contentRect.width);
-    });
+    console.log("Hook is being called");
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (!observerRef.current) {
+      observerRef.current = new ResizeObserver((entries) => {
+        setWidth(entries[0].contentRect.width);
+      });
+    }
+
+    const currentElement = ref.current;
+
+    if (currentElement) {
+      observerRef.current.observe(currentElement);
     }
 
     return () => {
-      ref.current && observer.unobserve(ref.current);
+      if (currentElement) {
+        observerRef.current?.unobserve(currentElement);
+      }
     };
   }, []);
 

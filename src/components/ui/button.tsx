@@ -33,7 +33,7 @@ export default function Button({
 
         className,
         {
-          " cursor-pointer group-hover:fill-gray-200  bg-primary-200 dark:bg-primary-300 dark:hover:bg-primary-500 hover:bg-primary-700 dark:group-hover:fill-primary-800 transition hover:text-primary-200 text-primary-700 dark:hover:bg-white dark:hover:text-primary-800":
+          " cursor-pointer group-hover:fill-gray-200  bg-primary-200 dark:bg-primary-300 dark:hover:bg-primary-500 hover:bg-primary-500 dark:group-hover:fill-primary-800 transition hover:text-primary-200 text-primary-700 dark:hover:bg-white dark:hover:text-primary-800":
             !disabled,
         },
         {

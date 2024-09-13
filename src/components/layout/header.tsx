@@ -14,7 +14,7 @@ import {
 } from "@headlessui/react";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { ListIcon, ChevronUpIcon, CloseIcon } from "../svgs";
+import { ListIcon, ChevronUpIcon, CloseIcon, ChevronDownIcon } from "../svgs";
 import Image from "../ui/image";
 import ThemeSwitch from "../theme-switch";
 import { ClickCounterContext } from "@/provider";
@@ -36,17 +36,7 @@ const products = [
   {
     name: "LIFAT",
     description: "Regarder mes missions chez MobaLib",
-    href: "projects/lifat",
-  },
-  {
-    name: "Integrations",
-    description: "Connect with third-party tools",
-    href: "#",
-  },
-  {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
-    href: "#",
+    href: "/projects/lifat",
   },
 ];
 
@@ -107,16 +97,16 @@ export default function Navbar() {
 
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
             <Link
-              href="/about"
+              href="/"
               className={clsx(
                 {
                   "text-gray-900 dark:text-gray-50 font-bold bg-hover-bg":
                     mainPathname === "about",
                 },
-                "py-0.5 px-5 font-medium leading-6 text-gray-700 xl:text-lg hover:text-gray-900 transition hover:text-semibold hover:bg-hover-bg hover:bg-contain dark:text-primary-300 dark:hover:text-gray-50"
+                "py-0.5 px-4 font-medium leading-6 text-gray-700 xl:text-lg hover:text-gray-900 transition hover:text-semibold hover:bg-hover-bg hover:bg-contain dark:text-primary-300 dark:hover:text-gray-50"
               )}
             >
-              About
+              Accueil
             </Link>
             <Popover className="relative">
               <PopoverButton
@@ -125,11 +115,11 @@ export default function Navbar() {
                     "text-gray-900 dark:text-gray-50 bg-hover-bg":
                       mainPathname === "projects",
                   },
-                  "flex items-center gap-x-1 py-0.5 px-2 hover:bg-hover-bg hover:bg-contain font-medium xl:text-lg leading-6  text-gray-700 hover:text-gray-900 dark:text-primary-300 dark:hover:text-gray-50"
+                  "flex items-center gap-x-1 py-0.5 px-3 hover:bg-hover-bg hover:bg-contain font-medium xl:text-lg leading-6  text-gray-700 hover:text-gray-900 dark:text-primary-300 dark:hover:text-gray-50"
                 )}
                 onClick={() => setClickCounter(clickCounter + 1)}
               >
-                Projects
+                Projets
                 <ChevronUpIcon
                   size={10}
                   className="fill-primary-800 dark:fill-primary-300 "
@@ -190,10 +180,10 @@ export default function Navbar() {
                   "text-gray-900 dark:text-gray-50 bg-hover-bg":
                     mainPathname === "blogs",
                 },
-                " py-0.5 px-1 font-medium leading-6 text-gray-700 xl:text-lg hover:text-gray-900 transition hover:text-semibold hover:bg-hover-bg hover:bg-cover dark:text-primary-300 dark:hover:text-gray-50"
+                " py-0.5  font-medium leading-6 text-gray-700 xl:text-lg hover:text-gray-900 transition hover:text-semibold hover:bg-hover-bg hover:bg-cover dark:text-primary-300 dark:hover:text-gray-50"
               )}
             >
-              Photo Blogs
+              Gallerie photo
             </Link>
 
             <ThemeSwitch />
@@ -235,41 +225,39 @@ export default function Navbar() {
           <div className="ml-2 mt-6 flow-root font-kennerly ">
             <div className="-my-6 divide-y divide-gray-500/10 ">
               <div className="space-y-2 py-6">
+                <Link
+                  href="/"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-lg font-medium leading-7 text-gray-700 hover:bg-gray-50 hover:text-gray-900 hover:bg-white hover:font-semibold dark:text-gray-200 dark:hover:text-gray-50 dark:hover:bg-primary-500"
+                >
+                  Accueil
+                </Link>
                 <Disclosure as="div" className="-mx-3">
                   <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-lg font-medium leading-7 text-primary-700 hover:bg-gray-50 hover:text-gray-900 hover:font-semibold hover:bg-white dark:text-gray-200 dark:hover:text-gray-50 dark:hover:bg-primary-500">
-                    Product
+                    Projets
+                    <ChevronDownIcon
+                      size={11}
+                      className="fill-primary-700 dark:fill-primary-200"
+                    />
                   </DisclosureButton>
-                  {/* <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products, ...callsToAction].map((item) => (
+                  <DisclosurePanel className="mt-2 space-y-2">
+                    {products.map((item) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className="block rounded-lg py-2 pl-6 pr-3 text-sm font-medium leading-7 text-gray-700 hover:bg-gray-900 hover:font-semibold"
+                        className="block rounded-lg py-2 pl-6 pr-3 text-base hover:text-primary-300 text-gray-200 dark:text-primary-200 font-medium leading-7 text-gray-700 hover:bg-leafgreen-700 hover:font-semibold"
                       >
                         {item.name}
                       </DisclosureButton>
                     ))}
-                  </DisclosurePanel> */}
+                  </DisclosurePanel>
                 </Disclosure>
-                <a
-                  href="#"
+                <Link
+                  href="/blogs"
                   className="-mx-3 block rounded-lg px-3 py-2 text-lg font-medium leading-7 text-gray-700 hover:bg-gray-50 hover:text-gray-900 hover:bg-white hover:font-semibold dark:text-gray-200 dark:hover:text-gray-50 dark:hover:bg-primary-500"
                 >
-                  Features
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-lg font-medium leading-7 text-gray-700 hover:bg-gray-50 hover:text-gray-900 hover:bg-white hover:font-semibold dark:text-gray-200 dark:hover:text-gray-50 dark:hover:bg-primary-500"
-                >
-                  Marketplace
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-lg font-medium leading-7 text-gray-700 hover:bg-gray-50 hover:text-gray-900 hover:bg-white hover:font-semibold dark:text-gray-200 dark:hover:text-gray-50 dark:hover:bg-primary-500"
-                >
-                  Company
-                </a>
+                  Gallerie Photo
+                </Link>
               </div>
               <div className="py-6">
                 <a

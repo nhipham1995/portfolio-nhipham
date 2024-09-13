@@ -19,7 +19,7 @@ export default function ImageComponent({
 }: ImageType) {
   return (
     <Image
-      src={src}
+      src={src ?? "/gallery/citadel-hue/4.jpg"}
       height={height}
       width={width}
       alt={alt}

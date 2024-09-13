@@ -1,7 +1,7 @@
 "use client";
 import Container from "@/components/container";
 import Title from "@/components/ui/title";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { albums } from "../../data";
 import ImageComponent from "@/components/ui/image";
 import { DateIcon, LocationIcon } from "@/components/svgs";
@@ -10,23 +10,28 @@ import Pagination from "@/components/pagination";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import ItemNumberController from "@/components/item-number-controller";
 import Modal from "@/components/modal";
-// interface IParams extends ParsedUrlQuery {
-//   slug: string;
-// }
+import { EventEmitter } from "events";
+type photoProps = {
+  id: number;
+  alt: string;
+  src: string;
+};
 
-// interface PageParams {
-//   id: string;
-// }
-// export const getStaticProps: GetStaticProps<PageParams> = async (context) => {
-//   const { id } = context.params as IParams;
-//   // Fetch images from an external API or local files
-//   let blog = albums.find((album) => album.id === Number(id));
-//   return {
-//     props: {
-//       blog,
-//     },
-//   };
-// };
+type BlogProps =
+  | {
+      id: number;
+      title: string;
+      description: string;
+      date: string;
+      position: string;
+      demoImg: photoProps;
+      photos: photoProps[];
+    }
+  | undefined;
+
+const emitter = new EventEmitter();
+emitter.setMaxListeners(20);
+
 type argProps =
   | {
       alt: string;
@@ -34,18 +39,38 @@ type argProps =
       id: number;
     }
   | undefined;
-export default function Page() {
-  const params = useParams<{ id: string }>();
-  let blog = albums.find((album) => album.id === Number(params?.id));
 
+const Page = () => {
+  const params = useParams<{ id: string }>();
+  const [blog, setBlog] = useState<BlogProps | undefined>(undefined);
   const [currentPhotos, setCurrentPhotos] = useState(0);
-  const [photoPerTime, setPhotoPerTime] = useState(12);
+  const [photoPerTime, setPhotoPerTime] = useState(8);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const itemsRef = useRef<Map<argProps, HTMLDivElement> | null>(null);
   const modalRef = useRef<number | null>(null);
   const activeModalImg = useRef<number | null>(null);
   const pageTotal = Math.ceil((blog?.photos.length ?? 0) / photoPerTime);
+  useEffect(() => {
+    const fetchBlogData = () => {
+      const data = albums.find((album) => album.id === Number(params?.id));
+      if (data === undefined) notFound();
+      setBlog(data);
+    };
+    fetchBlogData();
+    // Event handler for custom event
+    const handleEvent = () => {
+      fetchBlogData(); // Update blog data on event
+    };
+
+    // Listen to the custom event
+    emitter.on("customEvent", handleEvent);
+
+    // Cleanup the listener on unmount
+    return () => {
+      emitter.off("customEvent", handleEvent);
+    };
+  }, [params?.id]);
 
   function getMap() {
     if (itemsRef.current === null) {
@@ -91,11 +116,20 @@ export default function Page() {
     }
   }, [isModalOpen]);
 
+  // Ensure the component handles cases where blog might be undefined
+  if (!blog) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       <Modal
         open={isModalOpen}
-        photos={blog?.photos ?? []}
+        photos={
+          blog?.photos ?? [
+            { alt: "Test for beginning", src: "/gallery/paris-sky/1.jpg" },
+            { alt: "Test for beginning 2", src: "/gallery/paris-sky/2.jpg" },
+          ]
+        }
         modalClose={() => {
           setIsModalOpen(false);
           if (activeModalImg?.current !== null) {
@@ -122,13 +156,15 @@ export default function Page() {
       />
       <div className="-z-50">
         <div className="max-h-96">
-          <ImageComponent
-            src={blog?.photos[0].src ?? ""}
-            height={1500}
-            width={2500}
-            alt={blog?.photos[0].alt ?? ""}
-            className="h-96"
-          />
+          {blog?.photos[0].src && (
+            <ImageComponent
+              src={blog?.demoImg?.src}
+              height={1500}
+              width={2500}
+              alt={blog?.demoImg?.src ?? ""}
+              className="h-96"
+            />
+          )}
         </div>
         <Container>
           <Title
@@ -151,6 +187,7 @@ export default function Page() {
           photos={blog?.photos.slice(0, 8) ?? []}
           slidePerView={4}
           firstImg={1}
+          widthController={true}
         />
 
         <div className="grid xl:grid-cols-2 xl:gap-10 xl:px-16 mt-12 xl:mt-0 pt-10">
@@ -165,13 +202,15 @@ export default function Page() {
           </div>
 
           <div className="flex ">
-            <ImageComponent
-              src={blog?.photos[2].src ?? ""}
-              height={1500}
-              width={1500}
-              alt={blog?.photos[2].alt ?? ""}
-              className="h-128 "
-            />
+            {blog?.photos[2].src && (
+              <ImageComponent
+                src={blog?.photos[2].src}
+                height={1500}
+                width={1500}
+                alt={blog?.photos[2].alt ?? ""}
+                className="h-128 "
+              />
+            )}
           </div>
         </div>
         <Container className="mt-32">
@@ -189,7 +228,7 @@ export default function Page() {
             />
           </div>
 
-          <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-5">
+          <div className="mt-8 grid md:grid-cols-2  gap-12">
             {blog?.photos
               .slice(
                 currentPhotos * photoPerTime,
@@ -215,9 +254,9 @@ export default function Page() {
                     <ImageComponent
                       src={photo?.src}
                       alt={photo?.alt}
-                      height={500}
-                      width={500}
-                      className="h-56 xl:max-h-64"
+                      height={700}
+                      width={700}
+                      className="h-84 xl:h-96"
                     />
                   </div>
                 );
@@ -235,4 +274,6 @@ export default function Page() {
       </div>
     </div>
   );
-}
+};
+
+export default Page;

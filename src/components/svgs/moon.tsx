@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, SVGAttributes } from "react";
+import React from "react";
 import { IconProps } from "./close";
 
 const MoonIcon = ({ style, size = 100, className, onClick }: IconProps) => (

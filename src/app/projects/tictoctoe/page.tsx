@@ -12,7 +12,7 @@ import randomPlay from "@/components/functions/random-play";
 
 export default function Page() {
   const { clickCounter, setClickCounter } = useContext(ClickCounterContext);
-  const [row, setRow] = useState(4);
+  const [row, setRow] = useState(5);
   // store all the move from the beginning
   const [history, setHistory] = useState<any[] | ("X" | "O")[]>([
     Array(row * row).fill(null),
@@ -73,13 +73,13 @@ export default function Page() {
       ? ` ${
           !onePlayer
             ? moveDes.length % 2 === 0
-              ? "Votre tour: X"
-              : "Tour de : O"
-            : "Votre tour: X"
+              ? "Votre tour X"
+              : "Tour de O"
+            : "Votre tour X"
         }`
       : winner[0] === "draw"
       ? "Ce jeu se termine par un match nul. Rejouez en cliquant le button au dessous"
-      : `Le gagneur est  ${winner[0]}`;
+      : `LE GANEUR EST  ${winner[0]}`;
 
   return (
     <div
@@ -89,95 +89,109 @@ export default function Page() {
     >
       <Container>
         <Title
-          content="Tic Toc Toe"
-          style="font-kennerly xl:text-5xl text-center dark:text-primary-200"
+          content="Game: Tic Toc Toe"
+          style="font-kennerly xl:text-5xl text-center dark:text-primary-200 z-50 mt-16 lg:mt-0"
           type="h2"
           color="text-primary-700"
         />
 
         <>
-          <Button
-            onClick={restartFunc}
-            des={"Rejouez"}
-            downloadable={false}
-            className="w-36  mx-auto flex justify-center"
-          />
+          <div className="relative z-10">
+            <div
+              className={clsx(
+                { "bg-primary-300-950": winner !== null },
+                "fixed top-4 left-3 lg:top-64 lg:left-4 flex-col lg:flex  items-end bg-primary-700 rounded-xl p-2 lg:p-5 "
+              )}
+            >
+              <div className="flex justify-end items-center lg:block mt-2">
+                <label htmlFor="number-input">
+                  <span className="block mb-0.5 mr-2 text-xs lg:text-sm font-medium text-gray-300 inline">
+                    Jeu Dimension
+                  </span>
 
-          <Title
-            type="h3"
-            content={"[ " + instructionDes + " ]"}
-            style="flex justify-center my-5 font-plantin"
-            color="text-primary-950"
-          />
+                  <input
+                    type="number"
+                    id="number-input"
+                    aria-describedby="helper-text-explanation"
+                    className="inline w-16 peer border border-gray-200 bg-primary-600 text-primary-200 text-sm font-bold rounded-lg focus:ring-primary-600 focus:border-primary-500 block  py-1 px-2 dark:bg-primary-600 dark:border-primary-500 dark:placeholder-primary-500-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-600 "
+                    placeholder={row.toString()}
+                    required
+                    defaultValue={row}
+                    min={3}
+                    max={15}
+                    onChange={(e) => {
+                      const value = Number(e.target.value);
+                      value >= 3 && value < 16
+                        ? setRow(value)
+                        : value > 15
+                        ? setRow(15)
+                        : setRow(3);
+                    }}
+                  />
 
-          <div className="flex justify-between">
-            <div className="">
-              <Button
-                des="Retournez un pas"
-                downloadable={false}
-                className={"mt-0"}
-                onClick={() => {
-                  const newHistory = history.slice(0, history.length - 1);
-                  setHistory(newHistory);
-                  setMoveDes(moveDes.slice(0, moveDes.length - 1));
-                }}
-                disabled={history.length === 1}
-              />
-              <Button
-                des={!onePlayer ? "Deux joueurs" : "Jouez avec nous"}
-                downloadable={false}
-                onClick={() => {
-                  setOnePlayer(!onePlayer);
-                  restartFunc();
-                }}
-                className="text-center mx-auto bg-gray-200"
+                  <span className="mt-2 hidden text-xs  text-gray-600 dark:text-gray-300  peer-[&:not(:placeholder-shown):focus:invalid]:block">
+                    Accept only a number between 3 and {10}
+                  </span>
+                  <span className="mt-2 hidden text-xs text-red-500  peer-[&:not(:placeholder-shown):not(:focus):invalid]:block ">
+                    Accept only a number between 3 and 10
+                  </span>
+                </label>
+              </div>
+              <div className="flex gap-2 lg:block mb-4 lg:mb-0">
+                <div className="flex  gap-2">
+                  <Button
+                    onClick={restartFunc}
+                    des={"Rejouez"}
+                    downloadable={false}
+                    className="w-16 lg:w-20   mx-auto flex justify-center text-xs lg:text-sm  hover:bg-primary-500 hover:text-white"
+                  />
+
+                  <Button
+                    des={!onePlayer ? "Deux joueurs" : "Un joueur"}
+                    downloadable={false}
+                    onClick={() => {
+                      setOnePlayer(!onePlayer);
+                      restartFunc();
+                    }}
+                    className="text-center text-xs lg:text-sm  dark:bg-leafgreen-300 hover:bg-primary-500 hover:text-white"
+                  />
+                </div>
+
+                <Button
+                  des="Retournez"
+                  downloadable={false}
+                  className="mt-0 text-xs lg:text-sm w-24 flex  dark:bg-primary-950 justify-center "
+                  onClick={() => {
+                    const newHistory = history.slice(0, history.length - 1);
+                    setHistory(newHistory);
+                    setMoveDes(moveDes.slice(0, moveDes.length - 1));
+                  }}
+                  disabled={history.length === 1}
+                />
+              </div>
+            </div>
+            <div className="p-3 rounded-lg bg-gray-200 dark:bg-gray-300 fixed right-3 top-24 lg:right-4 lg:top-64">
+              <Title
+                type="h4"
+                content={"INFOs: " + instructionDes}
+                style="flex justify-center font-plantin text-xs lg:text-base  "
+                color="text-primary-950"
               />
             </div>
-            <label htmlFor="number-input">
-              <span className="block mb-0.5 mr-2 text-sm font-medium text-leafgreen-600 dark:text-gray-300 inline">
-                Nombre de carrés per colonne
-              </span>
-
-              <input
-                type="number"
-                id="number-input"
-                aria-describedby="helper-text-explanation"
-                className="inline w-24 peer border border-gray-300 text-primary-700 text-sm font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block  py-1 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-600 "
-                placeholder={row.toString()}
-                required
-                defaultValue={row}
-                min={3}
-                max={15}
-                onChange={(e) => {
-                  const value = Number(e.target.value);
-                  value >= 3 && value < 16
-                    ? setRow(value)
-                    : value > 15
-                    ? setRow(15)
-                    : setRow(3);
-                }}
-              />
-
-              <span className="mt-2 hidden text-xs  text-gray-600 dark:text-gray-300  peer-[&:not(:placeholder-shown):focus:invalid]:block">
-                Accept only a number between 3 and {10}
-              </span>
-              <span className="mt-2 hidden text-xs text-red-500  peer-[&:not(:placeholder-shown):not(:focus):invalid]:block ">
-                Accept only a number between 3 and 10
-              </span>
-            </label>
           </div>
+
           <div
             className={clsx(
               {
-                "grid grid-cols-2 justify-center ": row < 6,
+                "lg:grid lg:grid-cols-2 lg:justify-end ": row < 6,
               },
               {
-                "flex flex-col gap-12": row >= 6,
+                "flex flex-col gap-12 ": row >= 6,
               },
               "mt-12 mb-12"
             )}
           >
-            <div>
+            <div className={clsx({ "mb-6 lg:mx-28": row > 8 })}>
               <SquareList
                 onNextStep={handleNextStep}
                 squares={currentSquares}
@@ -205,11 +219,11 @@ export default function Page() {
                   {isAscOrder ? "Ascending Order" : "Descending Order"}
                 </button>
               </div>
-              <p className="instruction-info text-center italic font-light mb-5 text-orange-600 dark:text-gray-400 font-kennerly">
+              <p className="instruction-info text-center italic font-light mb-5 text-orange-600 dark:text-gray-400 font-kennerly max-w-72 mx-auto">
                 (Cliquez sur la ligne de description ci-dessous pour pouvoir
                 venir revenons à ce moment-là et rejouons )
               </p>
-              <ul className="move-list mt-8 p-0 list-none font-kennerly ">
+              <ul className="move-list mt-3 p-0 list-none font-kennerly ">
                 {moveDes.map((description: string, i: number) => {
                   if (history.length === 0) return null;
 
@@ -219,16 +233,14 @@ export default function Page() {
                       onClick={() => rePlayAt(i + 2)}
                       className={clsx(
                         {
-                          "cursor-pointer mt-3 text-leafgreen-600 dark:text-primary-400 flex justify-center text-gray-700 text-lg":
+                          "cursor-pointer mt-1 text-leafgreen-600 dark:text-primary-400 flex justify-center text-gray-700 text-lg":
                             onePlayer,
                         },
                         {
-                          "cursor-pointer mt-3 [&:nth-child(even)]:text-leafgreen-300 [&:nth-child(odd)]:text-primary-700 dark:[&:nth-child(odd)]:text-primary-400 flex justify-center text-gray-700 text-lg":
+                          "cursor-pointer mt-1 [&:nth-child(even)]:text-leafgreen-300 [&:nth-child(odd)]:text-primary-700 dark:[&:nth-child(odd)]:text-primary-400 flex justify-center text-gray-700 text-lg":
                             !onePlayer,
                         }
                       )}
-
-                      // className="cursor-pointer mt-3 [&:nth-child(even)]:text-leafgreen-300 [&:nth-child(odd)]:text-primary-700 dark:[&:nth-child(odd)]:text-primary-400 flex justify-center text-gray-700 text-lg"
                     >
                       <button>
                         {isAscOrder ? i + 1 : moveDes.length - i}.{" "}

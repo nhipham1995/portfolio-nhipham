@@ -1,6 +1,6 @@
 import Square from "./square";
 import winnerCheck from "../functions/haveWinner";
-
+import clsx from "clsx";
 type SquareListProps = {
   squares: ("X" | "O")[];
   onNextStep: (a: any[], i: number) => void;
@@ -41,7 +41,15 @@ function SquareList({
     <>
       {array.map((line, i) => {
         return (
-          <div className="flex justify-center" key={i}>
+          <div
+            className={clsx(
+              {
+                "lg:justify-end": row < 6,
+              },
+              "flex justify-center"
+            )}
+            key={i}
+          >
             {array.map((square, f) => {
               const index = i * row + f;
               return (

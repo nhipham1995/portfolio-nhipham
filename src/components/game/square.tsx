@@ -29,7 +29,7 @@ function Square({ value, onClick, ind, isWinSquare, hasWinner }: SquareProps) {
         {
           " bg-primary-500": value === null,
         },
-        "h-16 w-16 m-2 p-0 rounded text-4xl text-2xl",
+        "h-10 w-10 lg:h-16 lg:w-16 m-0.5 lg:m-1 p-0 rounded text-2xl lg:text-4xl",
         { "cursor-not-allowed opacity-90": hasWinner },
         { "win-square bg-primary-950 opacity-100": isWinSquare }
       )}

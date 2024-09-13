@@ -16,7 +16,7 @@ export default function Pagination({
 
   useEffect(() => {
     onChange(active);
-  }, [active]);
+  }, [active, onChange]);
 
   const getItemProps = (index: number) =>
     ({
@@ -37,6 +37,7 @@ export default function Pagination({
 
   const prev = () => {
     if (active === 0) return;
+
     setActive(active - 1);
   };
   const shortedList =

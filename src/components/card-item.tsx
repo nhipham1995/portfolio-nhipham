@@ -11,6 +11,7 @@ export type CardItemProps = {
   className?: string;
   goToLink?: string;
   company?: string;
+  detail?: boolean;
 };
 
 export default function CardItem({
@@ -23,6 +24,7 @@ export default function CardItem({
   className,
   goToLink,
   company,
+  detail,
 }: CardItemProps) {
   return (
     <div
@@ -42,24 +44,28 @@ export default function CardItem({
         </div>
 
         <div>
-          <p className="font-semibold text-lg text-primary-700 dark:text-primary-100 font-plantin">
+          <p className="font-semibold text-base lg:text-lg text-primary-700 dark:text-primary-100 font-plantin">
             {title}
           </p>
-          <p className="text-gray-500 italic text-lg dark:text-primary-200 ">
+          <p className="text-gray-500 italic text-base lgtext-lg dark:text-primary-200 ">
             {description}
           </p>
         </div>
       </div>
       <div className="flex flex-col justify-between">
-        <div className="text-gray-500 dark:text-gray-300">{time}</div>
-        <div className="text-gray-400 dark:text-gray-300 text-xs text-right">
-          <Link
-            href={goToLink ?? ""}
-            className="transition text-orange-400 hover:bg-orange-400 hover:text-gray-100 p-2 rounded font-bold italic hover:font-bold"
-          >
-            En détail
-          </Link>
+        <div className=" text-sm lg:text-base text-gray-600 dark:text-gray-300">
+          {time}
         </div>
+        {detail && (
+          <div className="text-gray-400 dark:text-gray-300 text-xs text-right">
+            <Link
+              href={goToLink ?? ""}
+              className="transition text-orange-400 hover:bg-orange-400 hover:text-gray-100 p-2 rounded font-bold italic hover:font-bold"
+            >
+              En détail
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
