@@ -163,12 +163,15 @@ export default function Home() {
         </div>
       </div>
       <Container className="mt-12 lg:mt-48">
-        <Title
-          type="h2"
-          content="PORTFOLIO"
-          style="xl:text-base lg:mx-24 mb-4 font-semibold"
-          color="text-primary-950"
-        />
+        <div id="portfolio" className="pt-12">
+          <Title
+            type="h2"
+            content="PORTFOLIO"
+            style="xl:text-base lg:mx-24 mb-4 font-semibold"
+            color="text-primary-950"
+          />
+        </div>
+
         <PortfolioCard
           title="MobaLib"
           description="Mobalib est une plateforme collaborative dédiée à l'accessibilité,
