@@ -28,7 +28,7 @@ export default function CardItem({
 }: CardItemProps) {
   return (
     <div
-      className={`flex justify-between gap-6 mb-5 hover:bg-gray-50 p-2 rounded-lg dark:hover:bg-primary-700 pb-5 ${className}`}
+      className={`flex justify-between gap-6 mb-5  p-2 rounded-lg  pb-5 hover:translate-x-2 transition motion-reduce:transition-none motion-reduce:hover:transform-none ${className}`}
     >
       <div className="flex items-center gap-3 px-2">
         <div className="w-12">

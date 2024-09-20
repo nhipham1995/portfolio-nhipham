@@ -23,7 +23,7 @@ export default function PortfolioCard({
   reverseOrder,
 }: CardProps) {
   return (
-    <div className="lg:grid lg:grid-cols-5 lg:mx-24 gap-12 mb-28">
+    <div className="lg:grid lg:grid-cols-5 lg:mx-24 gap-12 mb-28 ">
       <div
         className={clsx(
           { "lg:order-2": reverseOrder },

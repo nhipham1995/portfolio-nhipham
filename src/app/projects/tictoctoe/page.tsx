@@ -29,11 +29,7 @@ export default function Page() {
 
   const currentSquares = history[history.length - 1];
 
-  const handleNextStep = (
-    newSquares: ("X" | "O")[],
-    squareInd: number
-    // type: "X" | "O"
-  ) => {
+  const handleNextStep = (newSquares: ("X" | "O")[], squareInd: number) => {
     setHistory([...history, newSquares]);
 
     const newMove = moveDescription(squareInd, row);
@@ -209,14 +205,14 @@ export default function Page() {
               <Title
                 style="move-info-title font-beloved-sans text-center dark:text-gray-300"
                 type="h3"
-                content="Suivrez vos pas"
+                content="Suivrez vos mouvements"
               />
               <div className="flex justify-center ">
                 <button
                   className="result-order-toggle bg-primary-600 my-2 p-2 text-sm rounded-lg text-primary-200 cursor-pointer transition hover:bg-primary-700 hover:text-primary-100"
                   onClick={() => setIsAscOrder(!isAscOrder)}
                 >
-                  {isAscOrder ? "Ascending Order" : "Descending Order"}
+                  {isAscOrder ? "Ordre Croissant" : "Ordre Décroissant"}
                 </button>
               </div>
               <p className="instruction-info text-center italic font-light mb-5 text-orange-600 dark:text-gray-400 font-kennerly max-w-72 mx-auto">

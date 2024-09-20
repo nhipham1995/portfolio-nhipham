@@ -375,7 +375,7 @@ export const albums = [
   },
   {
     id: 5,
-    title: "Le nature de Hué",
+    title: "La nature de Hué",
     description:
       "Paris en hiver est véritablement comme je l’imaginais en regardant des films français lorsque j’étais petite. L’atmosphère est fraîche, presque mordante. Les rues sont bordées de cafés animés, où l’on peut voir à travers les vitres embuées des silhouettes qui se réchauffent autour d’un chocolat chaud fumant ou d’un café noir. Tout le monde marche à vive allure, emmitouflé dans de longs manteaux élégants, écharpes de laine enroulées soigneusement autour du cou, tandis que certains s’arrêtent brièvement devant les vitrines illuminées des magasins. Les feuilles mortes crissent sous les pieds, rappelant que l’automne a laissé place à l’hiver. Les lumières de la ville, douces et dorées, contrastent avec la grisaille du ciel, donnant à Paris cet air romantique que j'avais toujours rêvé de vivre.",
     date: "26/03/2024",
