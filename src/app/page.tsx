@@ -69,19 +69,31 @@ export default function Home() {
             </div>
 
             <div className="flex justify-center gap-4 mt-3 ">
-              <a className="cursor-pointer ">
+              <a
+                className="cursor-pointer "
+                href="https://github.com/nhipham1995"
+                target="_blank"
+              >
                 <GithubIcon
                   size={25}
                   className="fill-gray-400 hover:fill-amber-600 transition "
                 />
               </a>
-              <a>
+              <a
+                href="https://www.linkedin.com/in/nhi-pham-2728531b6/"
+                className="cursor-pointer "
+                target="_blank"
+              >
                 <LinkedinIcon
                   size={25}
                   className="fill-gray-400 hover:fill-amber-600 transition "
                 />
               </a>
-              <a className="cursor-pointer ">
+              <a
+                href="mailto:nhipham1195@gmail.com"
+                className="cursor-pointer "
+                target="_blank"
+              >
                 <MailIcon
                   size={25}
                   className="fill-gray-400 hover:fill-amber-600 transition "
