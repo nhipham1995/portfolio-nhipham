@@ -70,7 +70,7 @@ export default function PortfolioCard({
           alt={altImg}
           width={600}
           height={600}
-          className="rounded-lg"
+          className="rounded-lg shadow-xl "
         />
       </div>
     </div>

@@ -4,13 +4,12 @@
 import Title from "@/components/ui/title";
 import ImageComponent from "@/components/ui/image";
 import { LinkedinIcon, GithubIcon, MailIcon, SunIcon } from "@/components/svgs";
-import CardItem from "@/components/card-item";
+import CardItem from "@/components/work-item";
 import Button from "@/components/ui/button";
 import { useContext } from "react";
 import { ClickCounterContext } from "@/provider";
 import ClickCounter from "@/components/click-counter";
 import Container from "@/components/container";
-import Link from "next/link";
 import PortfolioCard from "@/components/portfolio-item";
 
 export default function Home() {
@@ -216,7 +215,7 @@ export default function Home() {
           description="Tic-toc-toe est un jeu que l'utilisateur peut décider la dimension de jeux, aussi choisir de jouer avec son ami ou de jouer avec la machine."
           tech={["React", "Typescript", "Tailwind CSS"]}
           link="/projects/tictoctoe"
-          srcImg="/screenshot/tictoctoe.png"
+          srcImg="/screenshot/tictoctoe.jpg"
           altImg="Illustration du jeu"
           reverseOrder={true}
         />

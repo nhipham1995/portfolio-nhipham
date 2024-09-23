@@ -156,7 +156,7 @@ export default function Page() {
                 <Button
                   des="Retournez"
                   downloadable={false}
-                  className="mt-0 text-2xs xs:text-xs lg:text-sm w-16 xs:w-24 flex  dark:bg-primary-950 justify-center "
+                  className="mt-0 text-2xs xs:text-xs lg:text-sm w-16 xs:min-w-24 md:min-w-28 flex  dark:bg-primary-950 justify-center "
                   onClick={() => {
                     const newHistory = history.slice(0, history.length - 1);
                     setHistory(newHistory);
