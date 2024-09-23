@@ -3,7 +3,7 @@ import Title from "@/components/ui/title";
 
 export default function Page() {
   return (
-    <div className="max-w-7xl mx-auto font-kennerly px-16">
+    <div className="max-w-7xl mx-auto font-kennerly px-4 md:px-16">
       <div className="flex justify-between mt-6">
         <div>
           <Title
@@ -31,7 +31,7 @@ export default function Page() {
         </p>
       </div>
       <div className="mt-8">
-        <p className="tracking-wide text-xl text-primary-800 dark:text-primary-300 pb-10 leading-9 text-justify">
+        <p className="md:tracking-wide text-xl text-primary-800 dark:text-primary-300 pb-10 leading-9 text-justify">
           Mobalib est une entreprise spécialisée dans l&rsquo;amélioration de
           l&rsquo;accessibilité pour les personnes en situation de handicap. Son
           objectif principal est de soutenir les administrations publiques et
@@ -92,7 +92,7 @@ export default function Page() {
             </p>
           </div>
         </div>
-        <p className="tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify pb-10">
+        <p className="md:tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify pb-10">
           En tant que concepteur de design et développeur web, j&rsquo;ai eu
           l&rsquo;opportunité de participer à la création de leur site web, un
           projet qui a renforcé mes compétences techniques tout en
@@ -130,7 +130,7 @@ export default function Page() {
             </p>
           </div>
         </div>
-        <p className="tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify">
+        <p className="md:tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify">
           Précisement, ma mission consiste principalement à concevoir le design
           du site sur Figma et à intégrer la page Mobalib en utilisant React,
           TypeScript, Next.js et Tailwind. Le site Mobalib est destiné à

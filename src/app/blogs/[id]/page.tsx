@@ -108,6 +108,24 @@ const Page = () => {
     setIsModalOpen(true);
   };
 
+  const modalCloseHandler = () => {
+    setIsModalOpen(false);
+    if (activeModalImg?.current !== null) {
+      const currentPage = Math.ceil(
+        (activeModalImg?.current + 1) / photoPerTime
+      );
+      const result = currentPage - 1;
+      setCurrentPhotos(result);
+      setTimeout(() => {
+        focusOnImage(
+          blog?.photos.filter(
+            (photo) => photo.id === (activeModalImg.current ?? 0)
+          )
+        ),
+          [];
+      });
+    }
+  };
   useEffect(() => {
     if (isModalOpen) {
       document.body.classList.add("overflow-y-hidden");
@@ -130,25 +148,7 @@ const Page = () => {
             { alt: "Test for beginning 2", src: "/gallery/paris-sky/2.jpg" },
           ]
         }
-        modalClose={() => {
-          setIsModalOpen(false);
-          if (activeModalImg?.current !== null) {
-            console.log(activeModalImg);
-            const currentPage = Math.ceil(
-              (activeModalImg?.current + 1) / photoPerTime
-            );
-            const result = currentPage - 1;
-            setCurrentPhotos(result);
-            setTimeout(() => {
-              focusOnImage(
-                blog?.photos.filter(
-                  (photo) => photo.id === (activeModalImg.current ?? 0)
-                )
-              ),
-                [];
-            });
-          }
-        }}
+        modalClose={modalCloseHandler}
         firstImg={modalRef.current ?? 0}
         activeImg={(e) => {
           activeModalImg.current = e;

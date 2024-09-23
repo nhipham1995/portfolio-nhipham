@@ -3,16 +3,16 @@ import Title from "@/components/ui/title";
 
 export default function Page() {
   return (
-    <div className="max-w-7xl mx-auto font-kennerly px-16">
+    <div className="max-w-7xl mx-auto font-kennerly px-4 md:px-16">
       <div className="flex justify-between mt-6">
         <div>
           {" "}
           <Title
             type="h2"
-            content="Alternance chez Mobalib"
+            content="Stage à LIFAT"
             style="font-bold dark:text-primary-200"
           />
-          <p className="text-primary-400  leading-10 font-light tracking-wide">
+          <p className="text-primary-400  leading-10 font-light md:tracking-wide">
             9/2021-12/2021
           </p>
         </div>
@@ -29,7 +29,7 @@ export default function Page() {
         <p>HTML, CSS, Javascript, NodeJS, Git, Gitlab, Procreate.</p>
       </div>
       <div className="mt-8">
-        <p className="tracking-wide text-xl text-primary-800 dark:text-primary-300 pb-10 leading-9 text-justify">
+        <p className="md:tracking-wide text-xl text-primary-800 dark:text-primary-300 pb-10 leading-9 text-justify">
           Dans le cadre de ma formation “DÉVELOPPEUR WEB ET WEB MOBILE”, j’ai
           effectué un stage de développement web au sein du Laboratoire
           d’Informatique Fondamentale et Appliquée de Tours (LIFAT). Il conçoit
@@ -41,7 +41,7 @@ export default function Page() {
           résultats avec un bon temps de calcul.
         </p>
 
-        <p className="tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify pb-10">
+        <p className="md:tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify pb-10">
           Je travaille sur un projet de développement d&rsquo;une application en
           ligne. Le but du projet est de proposer une application/logiciel léger
           et gratuit pour un support visuel pour les visioconférences en direct.
@@ -102,7 +102,7 @@ export default function Page() {
             </p>
           </div>
         </div>
-        <p className="tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify pb-10">
+        <p className="md:tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify pb-10">
           Le diaporama est beaucoup utilisé comme support de cours magistral.
           Son contenu est déterminé à l&rsquo;avance, c&rsquo;est donc
           l&rsquo;outil le plus simple à mettre en œuvre en ligne : chaque
@@ -111,7 +111,7 @@ export default function Page() {
           à l&rsquo;aide des touches directionnelles de son clavier, à mesure
           qu&rsquo;il les commente
         </p>
-        <p className="tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify pb-10">
+        <p className="md:tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify pb-10">
           Pendant mon stage, je travaille principalement sur le développement
           d&rsquo;une fonctionnalité de donner au conférencier la possibilité de
           téléverser un docu- mentde, précisement le téléchargement d&rsquo;un
@@ -154,13 +154,13 @@ export default function Page() {
             </p>
           </div>
         </div>
-        <div className="px-36 text-center tracking-wide  text-primary-600 dark:text-primary-400  text-center mb-12">
+        <div className="md:px-36 text-center md:tracking-wide  text-primary-600 dark:text-primary-400  text-center mb-12">
           Une démonstration des étapes de vérification du fichier téléchargé au
           client. On assume que nous sommes à la dernière page de présentation
           (a). Puis, un fichier de type .png est choisi, l&rsquo;utilisateur
           reçoit un message d&rsquo;erreur (b).
         </div>
-        <p className="tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify">
+        <p className="md:tracking-wide text-xl text-primary-800 dark:text-primary-300 leading-9 text-justify">
           En général, notre preuve de concept est encourageante, chacun de ces
           outils ayant rempli leurs promesses de simplicité et
           d&rsquo;efficacité lors de nos essais préliminaires. Nous pensons que
