@@ -101,7 +101,7 @@ export default function Page() {
             >
               <div className="flex justify-end items-center lg:block mt-2">
                 <label htmlFor="number-input">
-                  <span className="block mb-0.5 mr-2 text-xs lg:text-sm font-medium text-gray-300 inline">
+                  <span className="block mb-0.5 mr-2 text-2xs md:text-xs lg:text-sm font-medium text-gray-300 inline">
                     Jeu Dimension
                   </span>
 
@@ -109,7 +109,7 @@ export default function Page() {
                     type="number"
                     id="number-input"
                     aria-describedby="helper-text-explanation"
-                    className="inline w-16 peer border border-gray-200 bg-primary-600 text-primary-200 text-sm font-bold rounded-lg focus:ring-primary-600 focus:border-primary-500 block  py-1 px-2 dark:bg-primary-600 dark:border-primary-500 dark:placeholder-primary-500-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-600 "
+                    className="inline w-16 peer border border-gray-200 bg-primary-600 text-primary-200 text-xs xs:text-sm font-bold rounded-lg focus:ring-primary-600 focus:border-primary-500 block  py-1 px-2 dark:bg-primary-600 dark:border-primary-500 dark:placeholder-primary-500-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-600 "
                     placeholder={row.toString()}
                     required
                     defaultValue={row}
@@ -125,21 +125,21 @@ export default function Page() {
                     }}
                   />
 
-                  <span className="mt-2 hidden text-xs  text-gray-600 dark:text-gray-300  peer-[&:not(:placeholder-shown):focus:invalid]:block">
+                  <span className="mt-2 hidden text-2xs xs:text-xs  text-gray-600 dark:text-gray-300  peer-[&:not(:placeholder-shown):focus:invalid]:block">
                     Accept only a number between 3 and {10}
                   </span>
-                  <span className="mt-2 hidden text-xs text-red-500  peer-[&:not(:placeholder-shown):not(:focus):invalid]:block ">
+                  <span className="mt-2 hidden text-2xs xs:text-xs text-red-500  peer-[&:not(:placeholder-shown):not(:focus):invalid]:block ">
                     Accept only a number between 3 and 10
                   </span>
                 </label>
               </div>
-              <div className="flex gap-2 lg:block mb-4 lg:mb-0">
+              <div className="flex  gap-1 xs:gap-2 lg:block mb-4 lg:mb-0">
                 <div className="flex  gap-2">
                   <Button
                     onClick={restartFunc}
                     des={"Rejouez"}
                     downloadable={false}
-                    className="w-16 lg:w-20   mx-auto flex justify-center text-xs lg:text-sm  hover:bg-primary-500 hover:text-white"
+                    className="w-12 xs:w-16 lg:w-20   mx-auto flex justify-center text-2xs xs:text-xs lg:text-sm  hover:bg-primary-500 hover:text-white"
                   />
 
                   <Button
@@ -149,14 +149,14 @@ export default function Page() {
                       setOnePlayer(!onePlayer);
                       restartFunc();
                     }}
-                    className="text-center text-xs lg:text-sm  dark:bg-leafgreen-300 hover:bg-primary-500 hover:text-white"
+                    className="text-center text-2xs xs:text-xs lg:text-sm  dark:bg-leafgreen-300 hover:bg-primary-500 hover:text-white"
                   />
                 </div>
 
                 <Button
                   des="Retournez"
                   downloadable={false}
-                  className="mt-0 text-xs lg:text-sm w-24 flex  dark:bg-primary-950 justify-center "
+                  className="mt-0 text-2xs xs:text-xs lg:text-sm w-16 xs:w-24 flex  dark:bg-primary-950 justify-center "
                   onClick={() => {
                     const newHistory = history.slice(0, history.length - 1);
                     setHistory(newHistory);

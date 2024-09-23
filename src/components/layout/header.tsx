@@ -248,14 +248,6 @@ export default function Navbar() {
                   Gallerie Photo
                 </Link>
               </div>
-              {/* <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-lg font-semibold leading-7 text-slate-600 hover:bg-white hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-50 dark:hover:bg-primary-500"
-                >
-                  Log in
-                </a>
-              </div> */}
             </div>
           </div>
         </DialogPanel>

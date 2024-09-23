@@ -9,9 +9,8 @@ const config: Config = {
   darkMode: "class", // or 'media' or 'class'
 
   theme: {
-    // screens: {
-    //   "2xl": "1536px",
-    // },
+    // text-xs	font-size: 0.75rem; /* 12px */
+    // line-height: 1rem; /* 16px */
     extend: {
       height: {
         "128": "32rem",
@@ -77,6 +76,18 @@ const config: Config = {
         "flower-pattern": "url('/background/flowers.png')",
 
         // "footer-texture": "url('/img/footer-texture.png')",
+      },
+      // text-xs	font-size: 0.75rem; /* 12px */
+      // line-height: 1rem; /* 16px */
+      fontSize: {
+        "2xs": [
+          "0.55rem",
+          {
+            lineHeight: "0.8rem",
+            letterSpacing: "-0.01em",
+            fontWeight: "500",
+          },
+        ],
       },
     },
   },

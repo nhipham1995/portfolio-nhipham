@@ -1,16 +1,9 @@
 "use client";
-import {
-  Swiper,
-  SwiperSlide,
-  SwiperSlideProps,
-  useSwiperSlide,
-} from "swiper/react";
-import { type SwiperRef as SwiperType } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 
 import ImageComponent from "./image";
-import { HTMLAttributes, useEffect, useMemo, useRef, useState } from "react";
-import { useObserveElementWidth } from "../utils/use-observer-element-width";
+import { useMemo } from "react";
 
 // import Swiper styles
 import "swiper/css";
@@ -29,7 +22,6 @@ export default function Slider({
   firstImg,
   activeImg,
 }: SliderProps) {
-  console.log("height", height);
   const newArr = useMemo(() => {
     const firstSlice = photos?.slice(firstImg, photos.length);
     const secondSlice = photos?.slice(0, firstImg);

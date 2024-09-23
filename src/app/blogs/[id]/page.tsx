@@ -5,7 +5,6 @@ import { notFound, useParams } from "next/navigation";
 import { albums } from "../../data";
 import ImageComponent from "@/components/ui/image";
 import { DateIcon, LocationIcon } from "@/components/svgs";
-import Slider from "@/components/ui/slider";
 import Pagination from "@/components/pagination";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import ItemNumberController from "@/components/item-number-controller";
@@ -151,7 +150,6 @@ const Page = () => {
         }}
         firstImg={modalRef.current ?? 0}
         activeImg={(e) => {
-          console.log("modal", e);
           activeModalImg.current = e;
         }}
       />

@@ -1,15 +1,9 @@
 "use client";
-import {
-  Swiper,
-  SwiperSlide,
-  SwiperSlideProps,
-  useSwiperSlide,
-} from "swiper/react";
-import { type SwiperRef as SwiperType } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 
 import ImageComponent from "./image";
-import { HTMLAttributes, useEffect, useMemo, useRef, useState } from "react";
+import { HTMLAttributes, useMemo } from "react";
 import { useObserveElementWidth } from "../utils/use-observer-element-width";
 
 // import Swiper styles
