@@ -49,12 +49,12 @@ export default function Modal({
         )}
 
         <div
-          className="bg-primary-700 rounded-full p-2 absolute right-10 top-40 xs:right-20 xs:top-20 z-10 hover:cursor-pointer hover:bg-primary-800 group transition"
+          className="bg-primary-700 rounded-full p-2 absolute right-7 top-40 xs:right-20 xs:top-20 z-10 hover:cursor-pointer hover:bg-primary-800 group transition"
           onClick={handlerCloseModal}
         >
           <CloseIcon
             size={25}
-            className="p-1 fill-gray-100 group-hover:fill-gray-50"
+            className="p-0.5 md:p-1 fill-gray-100 group-hover:fill-gray-50"
           />
         </div>
       </div>

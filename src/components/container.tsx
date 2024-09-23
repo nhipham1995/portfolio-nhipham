@@ -12,6 +12,6 @@ export default function Container({
     <div
       className={`mx-auto  max-w-7xl  p-6 lg:px-8 + ${className}`}
       {...props}
-    ></div>
+    />
   );
 }
