@@ -31,7 +31,7 @@ export default function Modal({
         ref={ref}
         className={clsx(
           { hidden: !open },
-          "bg-black/60 h-screen w-full bottom-100 fixed text-white px-4 py-36 xs:p-[50px] bg-overlay/50 backdrop-opacity-disabled w-screen h-screen fixed inset-0"
+          "bg-black/60 h-screen w-full bottom-100 fixed text-white px-4 py-36 sm:px-[50px] sm:py-[50px] bg-overlay/50 backdrop-opacity-disabled w-screen h-screen fixed inset-0"
         )}
       >
         {open && (
@@ -49,7 +49,7 @@ export default function Modal({
         )}
 
         <div
-          className="bg-primary-700 rounded-full p-2 absolute right-7 top-40 xs:right-20 xs:top-20 z-10 hover:cursor-pointer hover:bg-primary-800 group transition"
+          className="bg-primary-700 rounded-full p-2 absolute right-7 top-40 sm:right-20 sm:top-20 z-10 hover:cursor-pointer hover:bg-primary-800 group transition"
           onClick={handlerCloseModal}
         >
           <CloseIcon

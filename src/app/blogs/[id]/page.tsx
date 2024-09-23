@@ -133,6 +133,7 @@ const Page = () => {
         modalClose={() => {
           setIsModalOpen(false);
           if (activeModalImg?.current !== null) {
+            console.log(activeModalImg);
             const currentPage = Math.ceil(
               (activeModalImg?.current + 1) / photoPerTime
             );
