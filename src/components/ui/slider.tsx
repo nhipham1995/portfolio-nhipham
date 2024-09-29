@@ -24,11 +24,12 @@ export default function Slider({
 }: SliderProps) {
   let newArr = photos;
   if (firstImg) {
-    newArr = useMemo(() => {
+    function newArrCal() {
       const firstSlice = photos?.slice(firstImg, photos.length);
       const secondSlice = photos?.slice(0, firstImg);
       return [...firstSlice, ...secondSlice];
-    }, [photos, firstImg]);
+    }
+    newArr = newArrCal();
   } else {
     newArr = newArr.slice(0, 4);
   }
@@ -44,7 +45,7 @@ export default function Slider({
   return (
     <div className={classNames}>
       <Swiper
-        // height={height}
+        height={height}
         spaceBetween={30}
         slidesPerView={slidePerView}
         modules={[Navigation, Pagination, A11y]}
