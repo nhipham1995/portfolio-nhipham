@@ -22,11 +22,16 @@ export default function Slider({
   firstImg,
   activeImg,
 }: SliderProps) {
-  const newArr = useMemo(() => {
-    const firstSlice = photos?.slice(firstImg, photos.length);
-    const secondSlice = photos?.slice(0, firstImg);
-    return [...firstSlice, ...secondSlice];
-  }, [photos, firstImg]);
+  let newArr = photos;
+  if (firstImg) {
+    newArr = useMemo(() => {
+      const firstSlice = photos?.slice(firstImg, photos.length);
+      const secondSlice = photos?.slice(0, firstImg);
+      return [...firstSlice, ...secondSlice];
+    }, [photos, firstImg]);
+  } else {
+    newArr = newArr.slice(0, 4);
+  }
 
   const onSlideChangeHandler = (index: number) => {
     let realIndex = index + (firstImg ?? 0);
@@ -39,11 +44,10 @@ export default function Slider({
   return (
     <div className={classNames}>
       <Swiper
-        height={height}
+        // height={height}
         spaceBetween={30}
         slidesPerView={slidePerView}
         modules={[Navigation, Pagination, A11y]}
-        effect={""}
         loop={true}
         centeredSlides={true}
         grabCursor={true}
@@ -55,10 +59,10 @@ export default function Slider({
         navigation={true}
         onSlideChange={(e) => onSlideChangeHandler(e.realIndex)}
       >
-        {newArr?.map((photo, i) => (
+        {newArr.map((photo, i) => (
           <SwiperSlide key={photo.alt + i}>
             <ImageComponent
-              src={photo.src ?? "/helo"}
+              src={photo.src ?? "/images/404.png"}
               height={1200}
               width={1200}
               alt={photo.alt}

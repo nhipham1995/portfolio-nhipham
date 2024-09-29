@@ -16,7 +16,7 @@ export default function Layout({ children }: LayoutProps) {
       }}
     >
       <main>{children}</main>
-      <ClickCounter />
+      {/* <ClickCounter /> */}
     </div>
   );
 }
