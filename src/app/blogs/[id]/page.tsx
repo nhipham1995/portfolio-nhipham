@@ -136,7 +136,7 @@ const Page = () => {
 
   // Ensure the component handles cases where blog might be undefined
   if (!blog) {
-    return <div>Loading...</div>;
+    return <div>Chargement...</div>;
   }
   return (
     <div>
@@ -207,7 +207,7 @@ const Page = () => {
                 height={1500}
                 width={1500}
                 alt={blog?.photos[2].alt ?? ""}
-                className="h-128 "
+                className="h-96 lg:h-128 "
               />
             )}
           </div>
@@ -255,7 +255,7 @@ const Page = () => {
                       alt={photo?.alt}
                       height={700}
                       width={700}
-                      className="h-84 xl:h-96"
+                      className="h-48 md:h-64 xl:h-96"
                     />
                   </div>
                 );

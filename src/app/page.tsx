@@ -22,7 +22,7 @@ export default function Home() {
       }}
     >
       <div className="  bg-opacity-80 dark:bg-opacity-50 min-h-[calc(100vh-_200px)]  bg-contain pb-12">
-        <div className="mx-auto mt-8 md:mt-20 flex gap-9 flex-col lg:grid lg:grid-cols-5 2xl:pt-32 lg:gap-4 max-w-7xl 2xl:max-w-8xl p-6 lg:px-8 xl:mb-5 2xl:mb-16">
+        <div className="mx-auto mt-2 md:mt-8 md:mt-20 flex gap-9 flex-col lg:grid lg:grid-cols-5 2xl:pt-32 lg:gap-4 max-w-7xl 2xl:max-w-8xl p-6 lg:px-8 xl:mb-5 2xl:mb-16">
           <div className="lg:col-span-3 lg:min-h-96 order-2 xl:order-1">
             <Title
               type="h1"
@@ -57,7 +57,7 @@ export default function Home() {
             </div>
           </div>
           <div className="lg:col-span-2  order-1 lg:order-2 w-full mx-auto ">
-            <div className="flex items-start justify-center px-32 md:px-24 xl:px-28 mb-4">
+            <div className="flex items-start justify-center px-24 md:px-24 xl:px-28 mb-4">
               <ImageComponent
                 src={"/images/ava.jpg"}
                 alt="Photo of admin"

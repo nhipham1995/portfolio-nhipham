@@ -216,6 +216,7 @@ export default function Navbar() {
               <div className="space-y-2 py-6">
                 <Link
                   href="/"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="-mx-3 block rounded-lg px-3 py-2 text-lg font-medium leading-7 text-gray-700 hover:bg-gray-50 hover:text-gray-900 hover:bg-white hover:font-semibold dark:text-gray-200 dark:hover:text-gray-50 dark:hover:bg-primary-500"
                 >
                   Accueil
@@ -243,6 +244,7 @@ export default function Navbar() {
                 </Disclosure>
                 <Link
                   href="/blogs"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="-mx-3 block rounded-lg px-3 py-2 text-lg font-medium leading-7 text-gray-700 hover:bg-gray-50 hover:text-gray-900 hover:bg-white hover:font-semibold dark:text-gray-200 dark:hover:text-gray-50 dark:hover:bg-primary-500"
                 >
                   Gallerie Photo
